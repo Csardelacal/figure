@@ -1,3 +1,6 @@
+<?php namespace defer\media\thumb;
+
+use defer\media\Compressor;
 
 /* 
  * The MIT License
@@ -23,4 +26,24 @@
  * THE SOFTWARE.
  */
 
-Public exception incoming
+class ThumbCompressorCappedMedium extends ThumbCompressor
+{
+	
+	public function getOptions() {
+		$presets = parent::getOptions();
+		$presets[Compressor::SETTING_RATIO_MAX] = 2;
+		$presets[Compressor::SETTING_RATIO_MIN] = .5;
+		$presets[Compressor::SETTING_HEIGHT_MAX] = 512;
+		$presets[Compressor::SETTING_WIDTH_MAX]  = 1024;
+		return $presets;
+	}
+
+	public function getTarget() {
+		return \MediaModel::TARGET_THUMB_CAPPED_MEDIUM;
+	}
+
+	public function after($_id) {
+		
+	}
+
+}

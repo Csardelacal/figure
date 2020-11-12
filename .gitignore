@@ -1,6 +1,5 @@
 Documentation/*
+bin/settings/environments.php
 *.*~
 *.DS_STORE
-*.sublime-project
-
-*.sublime-workspace
+/nbproject/private/
