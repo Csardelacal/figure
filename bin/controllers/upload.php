@@ -60,7 +60,7 @@ class UploadController extends BaseController
 			$media->cover  = false;
 			$media->upload = $upload;
 			$media->mime   = $_POST['media']->store()->mime();
-			$media->length = filesize($_POST['media']->get('tmp_name'));
+			$media->length = $_POST['media']->store()->length();
 			$media->store();
 			
 			

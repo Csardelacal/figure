@@ -141,6 +141,7 @@ abstract class Compressor extends \spitfire\core\async\Task
 		
 		$target->file = $output->uri();
 		$target->mime = $output->mime();
+		$target->length = $output->length();
 		
 		$target->store();
 		$this->after($target->_id);
