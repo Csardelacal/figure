@@ -1,0 +1,25 @@
+{
+    "name": "magic3w/figure",
+    "description": "Image ingest server for microservice networks",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "César de la Cal Bretschneider",
+            "email": "cesar@magic3w.com"
+        }
+    ],
+    "minimum-stability": "dev",
+	"prefer-stable": true,
+	"scripts" : {
+		"test" : [
+			"./vendor/bin/phpstan analyse bin --level 5"
+		],
+		"baseline" : [
+			"./vendor/bin/phpstan analyse bin --level 5 --generate-baseline"
+		]
+	},
+    "require-dev": {
+        "phpstan/phpstan": "^0.12.82"
+    }
+}

@@ -3,3 +3,4 @@ bin/settings/environments.php
 *.*~
 *.DS_STORE
 /nbproject/private/
+/vendor/

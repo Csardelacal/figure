@@ -1,0 +1,557 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property BaseController\\:\\:\\$sso \\(auth\\\\SSO\\) does not accept auth\\\\SSOCache\\.$#"
+			count: 1
+			path: bin/classes/BaseController.php
+
+		-
+			message: "#^Call to an undefined method auth\\\\SSOCache\\:\\:makeToken\\(\\)\\.$#"
+			count: 1
+			path: bin/classes/BaseController.php
+
+		-
+			message: "#^Property BaseController\\:\\:\\$user \\(object\\) does not accept bool\\|null\\.$#"
+			count: 1
+			path: bin/classes/BaseController.php
+
+		-
+			message: "#^Call to an undefined method auth\\\\SSOCache\\:\\:authApp\\(\\)\\.$#"
+			count: 1
+			path: bin/classes/BaseController.php
+
+		-
+			message: "#^Variable \\$signatures might not be defined\\.$#"
+			count: 1
+			path: bin/classes/auth/AppAuthentication.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: bin/classes/auth/Request.php
+
+		-
+			message: "#^Call to method getPath\\(\\) on an unknown class auth\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/auth/SSO.php
+
+		-
+			message: "#^Call to method getPort\\(\\) on an unknown class auth\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/auth/SSO.php
+
+		-
+			message: "#^Call to method getProtocol\\(\\) on an unknown class auth\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/auth/SSO.php
+
+		-
+			message: "#^Call to method getServer\\(\\) on an unknown class auth\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/auth/SSO.php
+
+		-
+			message: "#^Call to method getUser\\(\\) on an unknown class auth\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/auth/SSO.php
+
+		-
+			message: "#^Call to method getPassword\\(\\) on an unknown class auth\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/auth/SSO.php
+
+		-
+			message: "#^Instanceof between string\\|null and auth\\\\Token will always evaluate to false\\.$#"
+			count: 1
+			path: bin/classes/auth/SSO.php
+
+		-
+			message: "#^Variable \\$http_response_header in isset\\(\\) always exists and is not nullable\\.$#"
+			count: 1
+			path: bin/classes/auth/Token.php
+
+		-
+			message: "#^Parameter \\$url of method auth\\\\URLReflection\\:\\:fromURL\\(\\) has invalid typehint type auth\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/auth/URLReflection.php
+
+		-
+			message: "#^Return typehint of method auth\\\\URLReflection\\:\\:fromURL\\(\\) has invalid type auth\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/auth/URLReflection.php
+
+		-
+			message: "#^Class auth\\\\URLReflection constructor invoked with 8 parameters, 7 required\\.$#"
+			count: 1
+			path: bin/classes/auth/URLReflection.php
+
+		-
+			message: "#^Call to method getPath\\(\\) on an unknown class cloudy\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/cloudy/Cloudy.php
+
+		-
+			message: "#^Call to method getPort\\(\\) on an unknown class cloudy\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/cloudy/Cloudy.php
+
+		-
+			message: "#^Call to method getProtocol\\(\\) on an unknown class cloudy\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/cloudy/Cloudy.php
+
+		-
+			message: "#^Call to method getServer\\(\\) on an unknown class cloudy\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/cloudy/Cloudy.php
+
+		-
+			message: "#^Call to method getUser\\(\\) on an unknown class cloudy\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/cloudy/Cloudy.php
+
+		-
+			message: "#^Result of \\|\\| is always true\\.$#"
+			count: 1
+			path: bin/classes/cloudy/Cloudy.php
+
+		-
+			message: "#^Call to an undefined method auth\\\\SSOCache\\:\\:makeSignature\\(\\)\\.$#"
+			count: 2
+			path: bin/classes/cloudy/Cloudy.php
+
+		-
+			message: "#^Instantiated class cloudy\\\\PrivateException not found\\.$#"
+			count: 1
+			path: bin/classes/cloudy/Cloudy.php
+
+		-
+			message: "#^Throwing object of an unknown class cloudy\\\\PrivateException\\.$#"
+			count: 1
+			path: bin/classes/cloudy/Cloudy.php
+
+		-
+			message: "#^Anonymous function should return object but returns object\\.$#"
+			count: 1
+			path: bin/classes/cloudy/Cloudy.php
+
+		-
+			message: "#^Cannot access property \\$payload on bool\\.$#"
+			count: 1
+			path: bin/classes/cloudy/Cloudy.php
+
+		-
+			message: "#^Parameter \\$url of method cloudy\\\\URLReflection\\:\\:fromURL\\(\\) has invalid typehint type cloudy\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/cloudy/URLReflection.php
+
+		-
+			message: "#^Return typehint of method cloudy\\\\URLReflection\\:\\:fromURL\\(\\) has invalid type cloudy\\\\Settings\\.$#"
+			count: 1
+			path: bin/classes/cloudy/URLReflection.php
+
+		-
+			message: "#^Class cloudy\\\\URLReflection constructor invoked with 8 parameters, 7 required\\.$#"
+			count: 1
+			path: bin/classes/cloudy/URLReflection.php
+
+		-
+			message: "#^Parameter \\$id of method cloudy\\\\sf\\\\Mount\\:\\:bucket\\(\\) has invalid typehint type cloudy\\\\sf\\\\type\\.$#"
+			count: 1
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Invalid array key type cloudy\\\\sf\\\\type\\.$#"
+			count: 4
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Parameter \\#1 \\$uniqid of method cloudy\\\\Cloudy\\:\\:bucket\\(\\) expects string, cloudy\\\\sf\\\\type given\\.$#"
+			count: 1
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Method cloudy\\\\sf\\\\Mount\\:\\:parse\\(\\) should return array\\<string\\> but returns array\\<int, string\\|null\\>\\.$#"
+			count: 1
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Parameter \\#1 \\$key \\(string\\) of method cloudy\\\\sf\\\\Mount\\:\\:atime\\(\\) should be compatible with parameter \\$key \\(spitfire\\\\storage\\\\objectStorage\\\\type\\) of method spitfire\\\\storage\\\\objectStorage\\\\DriverInterface\\:\\:atime\\(\\)$#"
+			count: 1
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Method cloudy\\\\sf\\\\Mount\\:\\:atime\\(\\) should return int but returns null\\.$#"
+			count: 1
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Parameter \\#1 \\$id of method cloudy\\\\sf\\\\Mount\\:\\:bucket\\(\\) expects cloudy\\\\sf\\\\type, string given\\.$#"
+			count: 6
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Parameter \\#1 \\$key \\(string\\) of method cloudy\\\\sf\\\\Mount\\:\\:delete\\(\\) should be compatible with parameter \\$key \\(spitfire\\\\storage\\\\objectStorage\\\\type\\) of method spitfire\\\\storage\\\\objectStorage\\\\DriverInterface\\:\\:delete\\(\\)$#"
+			count: 1
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Parameter \\#1 \\$key \\(cloudy\\\\sf\\\\type\\) of method cloudy\\\\sf\\\\Mount\\:\\:read\\(\\) should be compatible with parameter \\$key \\(string\\) of method spitfire\\\\storage\\\\objectStorage\\\\DriverInterface\\:\\:read\\(\\)$#"
+			count: 1
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Parameter \\$key of method cloudy\\\\sf\\\\Mount\\:\\:read\\(\\) has invalid typehint type cloudy\\\\sf\\\\type\\.$#"
+			count: 1
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Return typehint of method cloudy\\\\sf\\\\Mount\\:\\:read\\(\\) has invalid type cloudy\\\\sf\\\\type\\.$#"
+			count: 1
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Parameter \\#1 \\$location of method cloudy\\\\sf\\\\Mount\\:\\:parse\\(\\) expects string, cloudy\\\\sf\\\\type given\\.$#"
+			count: 1
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Access to an undefined property cloudy\\\\sf\\\\Mount\\:\\:\\$media\\.$#"
+			count: 3
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Access to an undefined property cloudy\\\\sf\\\\Mount\\:\\:\\$body\\.$#"
+			count: 2
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Parameter \\#2 \\$contents \\(string\\) of method cloudy\\\\sf\\\\Mount\\:\\:write\\(\\) should be compatible with parameter \\$contents \\(spitfire\\\\storage\\\\objectStorage\\\\Blob\\) of method spitfire\\\\storage\\\\objectStorage\\\\DriverInterface\\:\\:write\\(\\)$#"
+			count: 1
+			path: bin/classes/cloudy/sf/Mount.php
+
+		-
+			message: "#^Parameter \\#1 \\$location of method spitfire\\\\storage\\\\objectStorage\\\\DriveDispatcher\\:\\:retrieve\\(\\) expects spitfire\\\\storage\\\\objectStorage\\\\type, spitfire\\\\core\\\\Environment\\|string given\\.$#"
+			count: 1
+			path: bin/classes/defer/media/Compressor.php
+
+		-
+			message: "#^Parameter \\#1 \\$prefix of function uniqid expects string, null given\\.$#"
+			count: 1
+			path: bin/classes/defer/media/Compressor.php
+
+		-
+			message: "#^Call to an undefined method spitfire\\\\storage\\\\objectStorage\\\\Blob\\:\\:length\\(\\)\\.$#"
+			count: 1
+			path: bin/classes/defer/media/Compressor.php
+
+		-
+			message: "#^Parameter \\#1 \\$location of method spitfire\\\\storage\\\\objectStorage\\\\DriveDispatcher\\:\\:retrieve\\(\\) expects spitfire\\\\storage\\\\objectStorage\\\\type, spitfire\\\\core\\\\Environment\\|string given\\.$#"
+			count: 1
+			path: bin/classes/defer/media/PosterTask.php
+
+		-
+			message: "#^Parameter \\#1 \\$prefix of function uniqid expects string, null given\\.$#"
+			count: 1
+			path: bin/classes/defer/media/PosterTask.php
+
+		-
+			message: "#^Parameter \\#1 \\$location of method spitfire\\\\storage\\\\objectStorage\\\\DriveDispatcher\\:\\:retrieve\\(\\) expects spitfire\\\\storage\\\\objectStorage\\\\type, string given\\.$#"
+			count: 1
+			path: bin/classes/defer/media/ProcessMediaTask.php
+
+		-
+			message: "#^Negated boolean expression is always true\\.$#"
+			count: 1
+			path: bin/classes/signature/Signature.php
+
+		-
+			message: "#^Result of \\|\\| is always true\\.$#"
+			count: 1
+			path: bin/classes/signature/Signature.php
+
+		-
+			message: "#^Parameter \\#5 \\$context of class signature\\\\Signature constructor expects string, array\\<int, string\\> given\\.$#"
+			count: 1
+			path: bin/classes/signature/Signature.php
+
+		-
+			message: "#^Parameter \\#7 \\$salt of class signature\\\\Signature constructor expects string\\|null, signature\\\\Checksum given\\.$#"
+			count: 1
+			path: bin/classes/signature/Signature.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$task\\.$#"
+			count: 1
+			path: bin/classes/spitfire/core/async/AsyncModel.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$result\\.$#"
+			count: 1
+			path: bin/classes/spitfire/core/async/AsyncModel.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$status\\.$#"
+			count: 1
+			path: bin/classes/spitfire/core/async/AsyncModel.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$ttl\\.$#"
+			count: 1
+			path: bin/classes/spitfire/core/async/AsyncModel.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$started\\.$#"
+			count: 1
+			path: bin/classes/spitfire/core/async/AsyncModel.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$scheduled\\.$#"
+			count: 1
+			path: bin/classes/spitfire/core/async/AsyncModel.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$supersedes\\.$#"
+			count: 1
+			path: bin/classes/spitfire/core/async/AsyncModel.php
+
+		-
+			message: "#^Method spitfire\\\\core\\\\async\\\\AsyncModel\\:\\:definitions\\(\\) should return spitfire\\\\storage\\\\database\\\\Schema but return statement is missing\\.$#"
+			count: 1
+			path: bin/classes/spitfire/core/async/AsyncModel.php
+
+		-
+			message: "#^Instantiated class PrivateException not found\\.$#"
+			count: 1
+			path: bin/controllers/media.php
+
+		-
+			message: "#^Throwing object of an unknown class PrivateException\\.$#"
+			count: 1
+			path: bin/controllers/media.php
+
+		-
+			message: "#^Class publicException referenced with incorrect case\\: PublicException\\.$#"
+			count: 2
+			path: bin/controllers/media.php
+
+		-
+			message: "#^Call to an undefined method spitfire\\\\storage\\\\objectStorage\\\\Blob\\:\\:publicURL\\(\\)\\.$#"
+			count: 1
+			path: bin/controllers/media.php
+
+		-
+			message: "#^Negated boolean expression is always false\\.$#"
+			count: 2
+			path: bin/controllers/secret.php
+
+		-
+			message: "#^Class publicException referenced with incorrect case\\: PublicException\\.$#"
+			count: 4
+			path: bin/controllers/secret.php
+
+		-
+			message: "#^Access to an undefined property UploadModel\\:\\:\\$app\\.$#"
+			count: 2
+			path: bin/controllers/secret.php
+
+		-
+			message: "#^Parameter \\#1 \\$location of method spitfire\\\\storage\\\\objectStorage\\\\DriveDispatcher\\:\\:retrieve\\(\\) expects spitfire\\\\storage\\\\objectStorage\\\\type, string given\\.$#"
+			count: 1
+			path: bin/controllers/upload.php
+
+		-
+			message: "#^Call to an undefined method spitfire\\\\storage\\\\objectStorage\\\\Blob\\:\\:length\\(\\)\\.$#"
+			count: 1
+			path: bin/controllers/upload.php
+
+		-
+			message: "#^Negated boolean expression is always false\\.$#"
+			count: 2
+			path: bin/controllers/upload.php
+
+		-
+			message: "#^Access to an undefined property UploadModel\\:\\:\\$type\\.$#"
+			count: 1
+			path: bin/controllers/upload.php
+
+		-
+			message: "#^Access to an undefined property UploadModel\\:\\:\\$app\\.$#"
+			count: 1
+			path: bin/controllers/upload.php
+
+		-
+			message: "#^Access to an undefined property UploadModel\\:\\:\\$expires\\.$#"
+			count: 2
+			path: bin/controllers/upload.php
+
+		-
+			message: "#^Undefined variable\\: \\$upload$#"
+			count: 2
+			path: bin/controllers/upload.php
+
+		-
+			message: "#^Variable \\$message might not be defined\\.$#"
+			count: 1
+			path: bin/error_pages/500.php
+
+		-
+			message: "#^Variable \\$moreInfo might not be defined\\.$#"
+			count: 1
+			path: bin/error_pages/500.php
+
+		-
+			message: "#^Variable \\$message might not be defined\\.$#"
+			count: 1
+			path: bin/error_pages/default.php
+
+		-
+			message: "#^Variable \\$moreInfo might not be defined\\.$#"
+			count: 1
+			path: bin/error_pages/default.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$upload\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$file\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$cover\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$target\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$mime\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$width\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$height\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$length\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$created\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Method MediaModel\\:\\:definitions\\(\\) should return spitfire\\\\storage\\\\database\\\\Schema but return statement is missing\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property MediaModel\\:\\:\\$created\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property MediaModel\\:\\:\\$_id\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property MediaModel\\:\\:\\$file\\.$#"
+			count: 3
+			path: bin/models/media.php
+
+		-
+			message: "#^Call to an undefined method spitfire\\\\storage\\\\objectStorage\\\\Blob\\:\\:publicURL\\(\\)\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property BadMethodCallException\\:\\:\\$target\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property MediaModel\\:\\:\\$upload\\.$#"
+			count: 1
+			path: bin/models/media.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$upload\\.$#"
+			count: 1
+			path: bin/models/secret.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$secret\\.$#"
+			count: 1
+			path: bin/models/secret.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$created\\.$#"
+			count: 1
+			path: bin/models/secret.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$expires\\.$#"
+			count: 1
+			path: bin/models/secret.php
+
+		-
+			message: "#^Method SecretModel\\:\\:definitions\\(\\) should return spitfire\\\\storage\\\\database\\\\Schema but return statement is missing\\.$#"
+			count: 1
+			path: bin/models/secret.php
+
+		-
+			message: "#^Access to an undefined property SecretModel\\:\\:\\$secret\\.$#"
+			count: 1
+			path: bin/models/secret.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$type\\.$#"
+			count: 1
+			path: bin/models/upload.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$app\\.$#"
+			count: 1
+			path: bin/models/upload.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$placeholder\\.$#"
+			count: 1
+			path: bin/models/upload.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$created\\.$#"
+			count: 1
+			path: bin/models/upload.php
+
+		-
+			message: "#^Access to an undefined property spitfire\\\\storage\\\\database\\\\Schema\\:\\:\\$expires\\.$#"
+			count: 1
+			path: bin/models/upload.php
+
+		-
+			message: "#^Method UploadModel\\:\\:definitions\\(\\) should return spitfire\\\\storage\\\\database\\\\Schema but return statement is missing\\.$#"
+			count: 1
+			path: bin/models/upload.php
+
+		-
+			message: "#^Parameter \\#2 \\$value of method spitfire\\\\core\\\\Environment\\:\\:set\\(\\) expects string, true given\\.$#"
+			count: 1
+			path: bin/settings/environments.php
+
