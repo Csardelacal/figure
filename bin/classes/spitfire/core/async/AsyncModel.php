@@ -11,7 +11,8 @@ class AsyncModel extends Model
 	 * @param Schema $schema
 	 * @return Schema
 	 */
-	public function definitions(Schema $schema) {
+	public function definitions(Schema $schema)
+	{
 		$schema->task = new \TextField();
 		$schema->result = new \TextField();
 		$schema->status = new \EnumField('pending', 'processing', 'success', 'error', 'aborted');
@@ -22,5 +23,4 @@ class AsyncModel extends Model
 		
 		$schema->index($schema->status, $schema->scheduled);
 	}
-
 }

@@ -29,18 +29,19 @@ use defer\media\Compressor;
 class ScaledCompressorSmall extends Compressor
 {
 	
-	public function getOptions() {
+	public function getOptions()
+	{
 		$presets = parent::getOptions();
 		$presets[Compressor::SETTING_WIDTH_MAX]  = 1200;
 		return $presets;
 	}
-
-	public function getTarget() {
+	
+	public function getTarget()
+	{
 		return \MediaModel::TARGET_SCALED_SMALL;
 	}
-
-	public function after($_id) {
-		
+	
+	public function after($_id)
+	{
 	}
-
 }

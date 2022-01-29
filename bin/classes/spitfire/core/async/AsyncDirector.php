@@ -8,15 +8,16 @@ use function db;
 class AsyncDirector extends Director
 {
 	
-	public function pending() {
-		
+	public function pending()
+	{
 	}
 	
 	/**
 	 * 
 	 * @synchronized defer
 	 */
-	public function process() {
+	public function process()
+	{
 		$pending = function () {
 			return db()->table('spitfire\core\async\Async')->get('status', 'pending')
 			->where('scheduled', '<=', time())
@@ -77,5 +78,4 @@ class AsyncDirector extends Director
 			sleep(3);
 		}
 	}
-	
 }

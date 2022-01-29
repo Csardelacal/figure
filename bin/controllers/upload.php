@@ -35,11 +35,16 @@ class UploadController extends BaseController
 	 * 
 	 * @throws HTTPMethodException
 	 */
-	public function create() {
+	public function create()
+	{
 		
 		try {
-			if (!$this->request->isPost()) { throw new HTTPMethodException('Not Posted'); }
-			if (!($_POST['media'] instanceof Upload)) { throw new PublicException('Invalid media', 400); }
+			if (!$this->request->isPost()) {
+				throw new HTTPMethodException('Not Posted'); 
+			}
+			if (!($_POST['media'] instanceof Upload)) {
+				throw new PublicException('Invalid media', 400); 
+			}
 			
 			$upload = db()->table('upload')->newRecord();
 			$upload->app     = null;
@@ -47,9 +52,15 @@ class UploadController extends BaseController
 			
 			$manipulator = media()->load(storage()->retrieve('file://' . $_POST['media']->get('tmp_name')));
 			
-			if ($manipulator instanceof \spitfire\io\media\FFMPEGManipulator && $manipulator->hasAudio()) { $upload->type = UploadModel::TYPE_VIDEO; }
-			elseif ($manipulator instanceof \spitfire\io\media\FFMPEGManipulator && !$manipulator->hasAudio()) { $upload->type = UploadModel::TYPE_ANIMATION; }
-			else { $upload->type = UploadModel::TYPE_IMAGE; }
+			if ($manipulator instanceof \spitfire\io\media\FFMPEGManipulator && $manipulator->hasAudio()) {
+				$upload->type = UploadModel::TYPE_VIDEO; 
+			}
+			elseif ($manipulator instanceof \spitfire\io\media\FFMPEGManipulator && !$manipulator->hasAudio()) {
+				$upload->type = UploadModel::TYPE_ANIMATION; 
+			}
+			else {
+				$upload->type = UploadModel::TYPE_IMAGE; 
+			}
 			
 			$upload->placeholder = $manipulator->poster()->fit(1, 1)->at(0, 0);
 			$upload->store();
@@ -85,7 +96,8 @@ class UploadController extends BaseController
 		}
 	}
 	
-	public function claim(UploadModel$model, $secret) {
+	public function claim(UploadModel$model, $secret)
+	{
 		
 		if (!$this->authapp) {
 			throw new PublicException('Unauthorized application', 403);
@@ -115,7 +127,8 @@ class UploadController extends BaseController
 		$this->view->set('upload', $model);
 	}
 	
-	public function retrieve(UploadModel$model, $secret) {
+	public function retrieve(UploadModel$model, $secret)
+	{
 		$this->response->getHeaders()->set('Cache-control', 'public, max-age=604800, immutable');
 		$this->response->getHeaders()->set('Expires', date('r', time() + 86400 * 90));
 		
@@ -125,7 +138,8 @@ class UploadController extends BaseController
 		$this->view->set('secret', $secret);
 	}
 	
-	public function delete(UploadModel$model) {
+	public function delete(UploadModel$model)
+	{
 		
 		if (!$this->authapp) {
 			throw new PublicException('Application could not be authorized', 403);

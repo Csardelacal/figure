@@ -29,22 +29,24 @@ use defer\media\Compressor;
 class ScaledCompressorXLarge extends Compressor
 {
 	
-	public function getOptions() {
+	public function getOptions()
+	{
 		$presets = parent::getOptions();
 		$presets[Compressor::SETTING_WIDTH_MAX]  = 3840;
 		return $presets;
 	}
-
-	public function getTarget() {
+	
+	public function getTarget()
+	{
 		return \MediaModel::TARGET_SCALED_XLARGE;
 	}
-
-	public function after($_id) {
+	
+	public function after($_id)
+	{
 		\spitfire\core\async\Async::defer(0, new ScaledCompressorLarge($_id));
 		\spitfire\core\async\Async::defer(0, new ScaledCompressorMedium($_id));
 		\spitfire\core\async\Async::defer(0, new ScaledCompressorSmall($_id));
 		\spitfire\core\async\Async::defer(0, new PosterScaledXLargeTask([$_id, 'image/jpeg']));
 		\spitfire\core\async\Async::defer(0, new PosterScaledXLargeTask([$_id, 'image/webp']));
 	}
-
 }

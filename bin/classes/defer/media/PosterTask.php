@@ -35,7 +35,8 @@ class PosterTask extends \spitfire\core\async\Task
 		'image/webp' => 'webp'
 	];
 	
-	public function body(): \spitfire\core\async\Result {
+	public function body(): \spitfire\core\async\Result
+	{
 		
 		list($uid, $contentType) = $this->getSettings();
 		
@@ -100,9 +101,8 @@ class PosterTask extends \spitfire\core\async\Task
 	 * Allows a compressor to invoke follow-up tasks (like generating a poster of 
 	 * the compressed file or scaling it to a smaller version)
 	 */
-	public function after($_id, $contentType) {
+	public function after($_id, $contentType)
+	{
 		//By default this is the last thing we do, but we can override behaviors here.
 	}
-	
-
 }

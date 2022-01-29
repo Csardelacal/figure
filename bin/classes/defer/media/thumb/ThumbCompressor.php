@@ -29,9 +29,9 @@ use defer\media\Compressor;
 abstract class ThumbCompressor extends Compressor
 {
 	
-	public function getOptions() {
+	public function getOptions()
+	{
 		$presets = parent::getOptions();
 		return $presets;
 	}
-	
 }

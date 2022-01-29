@@ -56,12 +56,12 @@ class UploadModel extends Model
 	 * @param Schema $schema
 	 * @return Schema
 	 */
-	public function definitions(Schema $schema) {
+	public function definitions(Schema $schema)
+	{
 		$schema->type    = new EnumField(self::TYPE_IMAGE, self::TYPE_ANIMATION, self::TYPE_VIDEO, null);
 		$schema->app     = new IntegerField(true);
 		$schema->placeholder = new IntegerField(true); #Display a color while the image is loading
 		$schema->created = new IntegerField(true);
 		$schema->expires = new IntegerField(true);
 	}
-
 }

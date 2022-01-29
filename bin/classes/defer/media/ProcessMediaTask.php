@@ -35,14 +35,15 @@ class ProcessMediaTask extends Task
 {
 	
 	
-	public function body(): Result {
+	public function body(): Result
+	{
 		
 		/*
 		 * Load the original upload and start creating tasks for it.
 		 */
 		$original = db()->table('media')->get('_id', $this->getSettings())->first(true);
 		$man      = media()->load(storage()->retrieve($original->file));
-
+		
 		list($width, $height) = $man->dimensions();
 		
 		$original->width = $width;
@@ -79,5 +80,4 @@ class ProcessMediaTask extends Task
 		Async::defer(0, new scaled\ScaledCompressorXLarge($original->_id));
 		return new Result('Queued tasks to process media');
 	}
-
 }

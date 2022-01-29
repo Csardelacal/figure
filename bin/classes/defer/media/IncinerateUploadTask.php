@@ -34,7 +34,8 @@ use function db;
 class IncinerateUploadTask extends Task
 {
 	
-	public function body(): Result {
+	public function body(): Result
+	{
 		$id     = $this->getSettings();
 		$upload = db()->table('upload')->get('_id', $id)->first(true);
 		
@@ -76,5 +77,4 @@ class IncinerateUploadTask extends Task
 		$upload->delete();
 		return new Result('Upload incinerated.');
 	}
-
 }

@@ -29,7 +29,8 @@ use defer\media\Compressor;
 class ThumbCompressorCappedLarge extends ThumbCompressor
 {
 	
-	public function getOptions() {
+	public function getOptions()
+	{
 		$presets = parent::getOptions();
 		$presets[Compressor::SETTING_RATIO_MAX] = 2;
 		$presets[Compressor::SETTING_RATIO_MIN] = .5;
@@ -37,16 +38,17 @@ class ThumbCompressorCappedLarge extends ThumbCompressor
 		$presets[Compressor::SETTING_WIDTH_MAX]  = 2048;
 		return $presets;
 	}
-
-	public function getTarget() {
+	
+	public function getTarget()
+	{
 		return \MediaModel::TARGET_THUMB_CAPPED_LARGE;
 	}
-
-	public function after($_id) {
+	
+	public function after($_id)
+	{
 		\spitfire\core\async\Async::defer(0, new ThumbCompressorCappedMedium($_id));
 		\spitfire\core\async\Async::defer(0, new ThumbCompressorCappedSmall($_id));
 		\spitfire\core\async\Async::defer(0, new PosterCappedLargeTask([$_id, 'image/jpeg']));
 		\spitfire\core\async\Async::defer(0, new PosterCappedLargeTask([$_id, 'image/webp']));
 	}
-
 }

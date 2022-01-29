@@ -3,7 +3,8 @@
 class Async
 {
 	
-	public static function defer($defer, $task, $ttl = 10) {
+	public static function defer($defer, $task, $ttl = 10)
+	{
 		$copy = db()->table('spitfire\core\async\Async')->newRecord();
 		$copy->status = 'pending';
 		$copy->ttl = $ttl;
@@ -11,5 +12,4 @@ class Async
 		$copy->task = serialize($task);
 		$copy->store();
 	}
-	
 }

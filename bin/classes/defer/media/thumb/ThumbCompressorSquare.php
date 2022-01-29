@@ -29,7 +29,8 @@ use defer\media\Compressor;
 class ThumbCompressorSquare extends ThumbCompressor
 {
 	
-	public function getOptions() {
+	public function getOptions()
+	{
 		$presets = parent::getOptions();
 		$presets[Compressor::SETTING_RATIO_MAX] = 1;
 		$presets[Compressor::SETTING_RATIO_MIN] = 1;
@@ -37,14 +38,15 @@ class ThumbCompressorSquare extends ThumbCompressor
 		$presets[Compressor::SETTING_WIDTH_MAX]  = 256;
 		return $presets;
 	}
-
-	public function getTarget() {
+	
+	public function getTarget()
+	{
 		return \MediaModel::TARGET_THUMB_SQUARE_SMALL;
 	}
-
-	public function after($_id) {
+	
+	public function after($_id)
+	{
 		\spitfire\core\async\Async::defer(0, new \defer\media\PosterTask([$_id, 'image/jpeg']));
 		\spitfire\core\async\Async::defer(0, new \defer\media\PosterTask([$_id, 'image/webp']));
 	}
-
 }

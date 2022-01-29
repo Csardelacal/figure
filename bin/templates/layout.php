@@ -40,7 +40,7 @@
 				</div>
 			</div>
 			<div class="right">
-				<?php if(isset($authUser) && $authUser): ?>
+				<?php if (isset($authUser) && $authUser) : ?>
 					<div class="has-dropdown" style="display: inline-block">
 						<a href="<?= url('user', $authUser->username) ?>" class="app-switcher" data-toggle="app-drawer">
 							<img src="<?= $authUser->avatar ?>" width="32" height="32" style="border-radius: 50%;" >
@@ -54,7 +54,7 @@
 							</div>
 						</div>
 					</div>
-				<?php else: ?>
+				<?php else : ?>
 					<a class="menu-item" href="<?= url('account', 'login') ?>">Login</a>
 				<?php endif; ?>
 			</div>
@@ -68,7 +68,7 @@
 		<div class="auto-extend">
 			<div class="content">
 		
-				<?php if (isset($authUser) && $authUser && !$authUser->verified): ?> 
+				<?php if (isset($authUser) && $authUser && !$authUser->verified) : ?> 
 				<!-- 
 					You haven't verified your account yet, that is quite a big deal for some
 					applications, which may rely on you activating your account to make sure 
@@ -107,7 +107,7 @@
 			<div class="sidebar">
 				<div class="spacer" style="height: 20px"></div>
 
-				<?php if(isset($authUser)): ?>
+				<?php if (isset($authUser)) : ?>
 				<div class="menu-title"> Account</div>
 				<div class="menu-entry"><a href="<?= url() ?>"                  >Edit profile</a></div>
 				<div class="menu-entry"><a href="<?= url('edit', 'email')    ?>">Change email address</a></div>
@@ -115,7 +115,7 @@
 				<div class="menu-entry"><a href="<?= url('edit', 'avatar') ?>"  >Upload avatar</a></div>
 				<div class="menu-entry"><a href="<?= url('permissions') ?>"     >Application permissions</a></div>
 
-				<?php if(isset($userIsAdmin) && $userIsAdmin): ?> 
+					<?php if (isset($userIsAdmin) && $userIsAdmin) : ?> 
 				<div class="spacer" style="height: 30px"></div>
 				<div class="menu-title">Administration</div>
 				<div class="menu-entry"><a href="<?= url('user')  ?>">Users</a></div>
@@ -125,7 +125,7 @@
 
 				<!--APPLICATIONS-->
 				<div class="menu-entry"><a href="<?= url('app') ?>"  >App administration</a></div>
-				<?php endif; ?> 
+					<?php endif; ?> 
 				<?php endif; ?> 
 				
 				<div class="menu-title">Our network</div>

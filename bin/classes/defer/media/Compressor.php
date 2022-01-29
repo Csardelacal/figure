@@ -36,7 +36,8 @@ abstract class Compressor extends \spitfire\core\async\Task
 	
 	const SETTING_FORCE_TYPE = 'forceContentType';
 	
-	public function body(): \spitfire\core\async\Result {
+	public function body(): \spitfire\core\async\Result
+	{
 		
 		/*
 		 * Find the original file, so we can use it to generate compressed versions
@@ -71,15 +72,27 @@ abstract class Compressor extends \spitfire\core\async\Task
 		list($width, $height) = $manipulator->dimensions();
 		
 		#Check if the sizes are appropriate
-		if ($parameters[self::SETTING_HEIGHT_MAX] && $height > $parameters[self::SETTING_HEIGHT_MAX]) { $valid = false; }
-		if ($parameters[self::SETTING_WIDTH_MAX] && $width  > $parameters[self::SETTING_WIDTH_MAX])  { $valid = false; }
+		if ($parameters[self::SETTING_HEIGHT_MAX] && $height > $parameters[self::SETTING_HEIGHT_MAX]) {
+			$valid = false; 
+		}
+		if ($parameters[self::SETTING_WIDTH_MAX] && $width  > $parameters[self::SETTING_WIDTH_MAX]) {
+			$valid = false; 
+		}
 		
-		if ($parameters[self::SETTING_RM_ALPHA])  { $valid = false; }
-		if ($file->mime() === 'image/gif')  { $valid = false; } #GIFs are accepted as an input format, but cannot be properly processed
+		if ($parameters[self::SETTING_RM_ALPHA]) {
+			$valid = false; 
+		}
+		if ($file->mime() === 'image/gif') {
+			$valid = false; 
+		} #GIFs are accepted as an input format, but cannot be properly processed
 		
 		#Check if the ratios are in spec
-		if ($parameters[self::SETTING_RATIO_MAX] && $width / $height  > $parameters[self::SETTING_RATIO_MAX])  { $valid = false; }
-		if ($parameters[self::SETTING_RATIO_MIN] && $width / $height  < $parameters[self::SETTING_RATIO_MIN])  { $valid = false; }
+		if ($parameters[self::SETTING_RATIO_MAX] && $width / $height  > $parameters[self::SETTING_RATIO_MAX]) {
+			$valid = false; 
+		}
+		if ($parameters[self::SETTING_RATIO_MIN] && $width / $height  < $parameters[self::SETTING_RATIO_MIN]) {
+			$valid = false; 
+		}
 		
 		if ($valid) {
 			$target->file = $file->uri();
@@ -149,7 +162,8 @@ abstract class Compressor extends \spitfire\core\async\Task
 		return new \spitfire\core\async\Result('Successfully compressed the media file');
 	}
 	
-	public function getOptions() {
+	public function getOptions()
+	{
 		return [
 			self::SETTING_HEIGHT_MAX => null,
 			self::SETTING_WIDTH_MAX  => null,
@@ -167,6 +181,4 @@ abstract class Compressor extends \spitfire\core\async\Task
 	 * the compressed file or scaling it to a smaller version)
 	 */
 	abstract public function after($_id);
-	
-
 }

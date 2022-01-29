@@ -27,7 +27,8 @@
 class SecretController extends BaseController
 {
 	
-	public function create(UploadModel$upload, $ttl = null) {
+	public function create(UploadModel$upload, $ttl = null)
+	{
 		
 		if (!$this->authapp) {
 			throw new PublicException('Only applications can create secrets', 403);
@@ -45,7 +46,8 @@ class SecretController extends BaseController
 		$this->view->set('secret', $secret);
 	}
 	
-	public function expire(UploadModel$upload, $secret) {
+	public function expire(UploadModel$upload, $secret)
+	{
 		
 		if (!$this->authapp) {
 			throw new PublicException('Only applications can create secrets', 403);
@@ -61,5 +63,4 @@ class SecretController extends BaseController
 		
 		$this->view->set('secret', $model);
 	}
-	
 }

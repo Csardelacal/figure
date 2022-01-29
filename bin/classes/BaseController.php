@@ -18,12 +18,12 @@ class BaseController extends Controller
 	
 	/** @var SSO */
 	public $sso;
-
+	
 	/** 
 	 * @var Token 
 	 */
 	protected $token;
-
+	
 	/** @var object */
 	protected $user;
 	
@@ -35,7 +35,8 @@ class BaseController extends Controller
 	
 	protected $permission;
 	
-	public function _onload() {
+	public function _onload()
+	{
 		$this->sso   = new SSOCache(Environment::get('SSO'));
 		
 		
@@ -52,13 +53,10 @@ class BaseController extends Controller
 		}) : null;
 		
 		if (isset($_GET['signature']) && is_string($_GET['signature'])) {
-			
 			$this->authapp = $this->sso->authApp($_GET['signature'])->getSrc();
 		}
 		
 		$this->view->set('authUser', $this->user);
 		$this->view->set('authSSO', $this->sso);
-		
 	}
-	
 }

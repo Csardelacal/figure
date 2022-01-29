@@ -29,7 +29,8 @@ use defer\media\Compressor;
 class ThumbCompressorCappedMedium extends ThumbCompressor
 {
 	
-	public function getOptions() {
+	public function getOptions()
+	{
 		$presets = parent::getOptions();
 		$presets[Compressor::SETTING_RATIO_MAX] = 2;
 		$presets[Compressor::SETTING_RATIO_MIN] = .5;
@@ -37,13 +38,13 @@ class ThumbCompressorCappedMedium extends ThumbCompressor
 		$presets[Compressor::SETTING_WIDTH_MAX]  = 1024;
 		return $presets;
 	}
-
-	public function getTarget() {
+	
+	public function getTarget()
+	{
 		return \MediaModel::TARGET_THUMB_CAPPED_MEDIUM;
 	}
-
-	public function after($_id) {
-		
+	
+	public function after($_id)
+	{
 	}
-
 }

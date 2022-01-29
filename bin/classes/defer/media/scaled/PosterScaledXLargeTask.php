@@ -29,7 +29,8 @@ use defer\media\PosterTask;
 class PosterScaledXLargeTask extends PosterTask
 {
 	
-	public function after($_id, $contentType) {
+	public function after($_id, $contentType)
+	{
 		parent::after($_id, $contentType);
 		\spitfire\core\async\Async::defer(0, new ScaledCompressorLarge($_id));
 		\spitfire\core\async\Async::defer(0, new ScaledCompressorMedium($_id));

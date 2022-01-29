@@ -16,13 +16,13 @@
  * config but we need to create them first.
  */
 
-define ('BASEDIR',                rtrim(dirname(__FILE__),'\/'), true);
-define ('APP_DIRECTORY',         'bin/apps/',        true);
-define ('CONFIG_DIRECTORY',      'bin/settings/',    true);
-define ('CONTROLLERS_DIRECTORY', 'bin/controllers/', true);
-define ('ASSET_DIRECTORY',       'assets/',          true);
-define ('TEMPLATES_DIRECTORY',   'bin/templates/',   true);
-define ('SESSION_SAVE_PATH',     'bin/usr/sessions/',true);
+define('BASEDIR', rtrim(dirname(__FILE__), '\/'), true);
+define('APP_DIRECTORY', 'bin/apps/', true);
+define('CONFIG_DIRECTORY', 'bin/settings/', true);
+define('CONTROLLERS_DIRECTORY', 'bin/controllers/', true);
+define('ASSET_DIRECTORY', 'assets/', true);
+define('TEMPLATES_DIRECTORY', 'bin/templates/', true);
+define('SESSION_SAVE_PATH', 'bin/usr/sessions/', true);
 
 /* Set error handling directives. AS we do not want Apache / PHP
  * to send the data to the user but to our terminal we will tell
@@ -31,9 +31,9 @@ define ('SESSION_SAVE_PATH',     'bin/usr/sessions/',true);
  * We can watch errors happening live. Grepping them can also help
  * filtering.
  */
-ini_set("log_errors" , 1);
-ini_set("error_log" , "logs/error_log.log");
-ini_set("display_errors" , 0);
+ini_set("log_errors", 1);
+ini_set("error_log", "logs/error_log.log");
+ini_set("display_errors", 0);
 
 /* Include Spitfire core.
  */

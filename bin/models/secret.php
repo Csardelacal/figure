@@ -26,8 +26,6 @@ use spitfire\storage\database\Schema;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
- 
- 
 
 class SecretModel extends Model
 {
@@ -37,17 +35,18 @@ class SecretModel extends Model
 	 * @param Schema $schema
 	 * @return Schema
 	 */
-	public function definitions(Schema $schema) {
+	public function definitions(Schema $schema)
+	{
 		$schema->upload = new Reference('upload');
 		$schema->secret = new StringField(255);
 		$schema->created = new IntegerField(true);
 		$schema->expires = new IntegerField(true);
 	}
 	
-	public function onbeforesave(): void {
+	public function onbeforesave(): void
+	{
 		if (!$this->secret) {
 			$this->secret = substr(str_replace(['/', '+'], '', base64_encode(random_bytes(200))), 0, 255);
 		}
 	}
-
 }

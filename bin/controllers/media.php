@@ -40,7 +40,8 @@ class MediaController extends Controller
 		MediaModel::TARGET_SCALED_XLARGE,
 	];
 	
-	public function download(UploadModel$model, $secret, $size = MediaModel::TARGET_ORIGINAL) {
+	public function download(UploadModel$model, $secret, $size = MediaModel::TARGET_ORIGINAL)
+	{
 		
 		if (!in_array($size, $this->sizes)) {
 			throw new PrivateException('Invalid size parameter', 400);
@@ -72,7 +73,5 @@ class MediaController extends Controller
 		
 		$this->response->getHeaders()->set('Content-type', $file->mime());
 		$this->response->setBody($file->read());
-		
 	}
-	
 }

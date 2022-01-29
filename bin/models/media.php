@@ -26,8 +26,6 @@ use spitfire\storage\database\Schema;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
- 
- 
 
 class MediaModel extends Model
 {
@@ -51,7 +49,8 @@ class MediaModel extends Model
 	 * @param Schema $schema
 	 * @return Schema
 	 */
-	public function definitions(Schema $schema) {
+	public function definitions(Schema $schema)
+	{
 		
 		$schema->upload  = new Reference('upload');
 		$schema->file    = new StringField(1024);
@@ -78,25 +77,32 @@ class MediaModel extends Model
 		$schema->created = new IntegerField(true);
 	}
 	
-	public function onbeforesave() {
+	public function onbeforesave()
+	{
 		if (!$this->created) {
 			$this->created = time();
 		}
 	}
 	
-	public function url($secret) {
+	public function url($secret)
+	{
 		
 		$memcached = spitfire\cache\MemcachedAdapter::getInstance();
 		
 		return $memcached->get('url_media_' . $this->_id . '_' . $secret->_id, function () use ($secret) {
 			$file = storage()->retrieve($this->file);
-
-			try { return $file->publicURL($secret->expires - time()); }
-			catch (BadMethodCallException$e) { return (string)url('media', 'download', $this->upload->_id, $secret->secret, $e->target)->absolute(); }
+			
+			try {
+				return $file->publicURL($secret->expires - time()); 
+			}
+			catch (BadMethodCallException$e) {
+				return (string)url('media', 'download', $this->upload->_id, $secret->secret, $e->target)->absolute(); 
+			}
 		});
 	}
 	
-	public function delete() {
+	public function delete()
+	{
 		/*
 		 * Delete the data from the HDD before removing the database directory 
 		 * entry.
@@ -112,5 +118,4 @@ class MediaModel extends Model
 		
 		parent::delete();
 	}
-
 }
