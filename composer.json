@@ -1,0 +1,62 @@
+{
+	"name": "spitfire/project",
+	"description": "Spitfire project. Fork this repository for your new project",
+	"type": "project",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "cesar",
+			"email": "cesar@magic3w.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"autoload": {
+		"psr-4": {
+			"app\\" : "./app/"
+		}
+	},
+	"require": {
+        "PHP" : "^7.3||^8.0",
+		"spitfire/engine": "dev-master",
+		"monolog/monolog": "^2.2",
+		"phug/phug": "^1.10",
+		"league/flysystem-aws-s3-v3": "^3.5",
+		"jcupitt/vips": "^2.1",
+		"php-ffmpeg/php-ffmpeg": "^1.0"
+	},
+	"extra" : {
+		"spitfire" : {
+			"app" : {
+				"/" : {
+					"kernel" : "app\\App",
+					"events" : ["magic3w/extension"]
+				}
+			}
+		}
+	},
+	"scripts": {
+		"test" : [
+			"./vendor/bin/phpcs . -s --ignore=bin/*,public/*,storage/*",
+			"XDEBUG_MODE=coverage ./vendor/bin/phpunit app/tests --coverage-clover app/tests/coverage.xml"
+		],
+		"sniff":
+			"./vendor/bin/phpcs --encoding=utf-8 -n -p $(git diff master --diff-filter=d --cached --name-only | grep -E '\\.php$') --ignore=bin/schema.php",
+		"style":
+			"./vendor/bin/phpcbf --encoding=utf-8 -n -p $(git diff master --diff-filter=d --cached --name-only | grep -E '\\.php$') --ignore=bin/schema.php"
+
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^9.5",
+		"magic3w/php-coding-standard" : "*",
+		"squizlabs/php_codesniffer": "dev-dev/scope-indent-blank-lines"
+	},
+
+	"repositories":
+	[
+			{
+				"type": "vcs",
+				"url": "https://github.com/Csardelacal/PHP_Codesniffer"
+			}
+	]
+}
