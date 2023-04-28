@@ -1,6 +1,6 @@
 {
-	"name": "spitfire/project",
-	"description": "Spitfire project. Fork this repository for your new project",
+	"name": "commishes/figure",
+	"description": "Image ingest and downscaling service for commishes",
 	"type": "project",
 	"license": "MIT",
 	"authors": [
@@ -22,8 +22,9 @@
 		"monolog/monolog": "^2.2",
 		"phug/phug": "^1.10",
 		"league/flysystem-aws-s3-v3": "^3.5",
-		"jcupitt/vips": "^2.1",
-		"php-ffmpeg/php-ffmpeg": "^1.0"
+		"php-ffmpeg/php-ffmpeg": "^1.0",
+		"thecodingmachine/graphqlite": "^6.2",
+		"symfony/cache": "^6.2"
 	},
 	"extra" : {
 		"spitfire" : {
