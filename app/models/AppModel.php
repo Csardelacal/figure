@@ -2,9 +2,7 @@
 
 use spitfire\model\attribute\CharacterString;
 use spitfire\model\attribute\Table;
-use spitfire\model\Field;
 use spitfire\model\Model;
-use spitfire\model\relations\BelongsToOne;
 use spitfire\model\traits\WithId;
 use spitfire\model\traits\WithSoftDeletes;
 use spitfire\model\traits\WithTimestamps;

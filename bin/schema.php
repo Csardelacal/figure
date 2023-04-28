@@ -5,8 +5,12 @@
     (function() {
         $this->name = 'testdb';
         $this->layouts = (static function() {
-            $class = new \ReflectionClass(\spitfire\collection\Collection::class);
+            $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
             $object = $class->newInstanceWithoutConstructor();
+
+            (function() {
+                $this->type = 'spitfire\\storage\\database\\Layout';
+            })->bindTo($object, \spitfire\collection\TypedCollection::class)();
 
             (function() {
                 $this->items = [
@@ -17,8 +21,12 @@
                         (function() {
                             $this->tablename = '_tags';
                             $this->fields = (static function() {
-                                $class = new \ReflectionClass(\spitfire\collection\Collection::class);
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
                                 $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\Field';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
 
                                 (function() {
                                     $this->items = [
@@ -80,8 +88,12 @@
                                 return $object;
                             })();
                             $this->indexes = (static function() {
-                                $class = new \ReflectionClass(\spitfire\collection\Collection::class);
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
                                 $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\IndexInterface';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
 
                                 (function() {
                                     $this->items = [
@@ -189,8 +201,12 @@
                         (function() {
                             $this->tablename = 'apps';
                             $this->fields = (static function() {
-                                $class = new \ReflectionClass(\spitfire\collection\Collection::class);
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
                                 $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\Field';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
 
                                 (function() {
                                     $this->items = [
@@ -278,8 +294,12 @@
                                 return $object;
                             })();
                             $this->indexes = (static function() {
-                                $class = new \ReflectionClass(\spitfire\collection\Collection::class);
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
                                 $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\IndexInterface';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
 
                                 (function() {
                                     $this->items = [
@@ -407,8 +427,12 @@
                         (function() {
                             $this->tablename = 'files';
                             $this->fields = (static function() {
-                                $class = new \ReflectionClass(\spitfire\collection\Collection::class);
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
                                 $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\Field';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
 
                                 (function() {
                                     $this->items = [
@@ -548,8 +572,12 @@
                                 return $object;
                             })();
                             $this->indexes = (static function() {
-                                $class = new \ReflectionClass(\spitfire\collection\Collection::class);
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
                                 $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\IndexInterface';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
 
                                 (function() {
                                     $this->items = [
@@ -706,8 +734,12 @@
                         (function() {
                             $this->tablename = 'uploads';
                             $this->fields = (static function() {
-                                $class = new \ReflectionClass(\spitfire\collection\Collection::class);
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
                                 $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\Field';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
 
                                 (function() {
                                     $this->items = [
@@ -808,8 +840,12 @@
                                 return $object;
                             })();
                             $this->indexes = (static function() {
-                                $class = new \ReflectionClass(\spitfire\collection\Collection::class);
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
                                 $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\IndexInterface';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
 
                                 (function() {
                                     $this->items = [

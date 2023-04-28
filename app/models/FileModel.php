@@ -87,6 +87,11 @@ class FileModel extends Model
 		return $this->animated;
 	}
 	
+	public function getMD5() : string
+	{
+		return $this->md5;
+	}
+	
 	public function setAnimated(bool $animated)
 	{
 		$this->animated = $animated;
