@@ -1,4 +1,4 @@
-<?php namespace app\controllers;
+<?php namespace app\controllers\apiv1;
 
 use app\classes\utils\Animated;
 use app\classes\utils\LQIP;
@@ -7,7 +7,10 @@ use app\models\UploadModel;
 use FFMpeg\Coordinate\TimeCode;
 use magic3w\http\url\reflection\QueryString;
 use Psr\Http\Message\ServerRequestInterface;
+use spitfire\core\ResponseFactory;
+use spitfire\exceptions\user\NotFoundException;
 use spitfire\io\stream\Stream;
+use spitfire\io\template\View;
 use spitfire\mvc\Controller;
 
 class UploadController extends Controller
@@ -112,29 +115,23 @@ class UploadController extends Controller
 		#Make the link expire in 20 minutes.
 		$expires = time() + 1200;
 		$salt    = bin2hex(random_bytes(10));
-		$transforms = QueryString::encode([
-			'width' => 700,
-			'fit' => 'scale-down'
-		], ',');
 		
 		$hash = sha1(implode('.', [
 			$upload->getId(),
 			$expires,
-			$transforms,
 			$salt,
 			config('figure.publish.secret')
 		]));
 		
 		return response(
-			view(null, [
+			(new ResponseFactory)->json([
 				'id' => $upload->getId(),
 				'secret' => $upload->getSecret(),
-				'preview' => url()->to(
-					[ImageController::class, 'retrieve'],
+				'url' => url()->to(
+					[self::class, 'retrieve'],
 					[
 						'id' => $upload->getId(),
 						'expiration' => $expires,
-						'transform' => $transforms,
 						'salt' => $salt,
 						'hash' => $hash
 					]
@@ -142,16 +139,65 @@ class UploadController extends Controller
 				'meta' => [
 					'animated' => $_file->getAnimated(),
 					'contentType' => $_file->getContentType(),
+					'md5' => $_file->getMD5(),
 					'length' => $_file->getLength()
 				],
 				'lqip' => $_file->getLQIP()
 			]),
 			200,
 			[
-				'Content-type' => 'application/json',
-				'X-Filename' => $filename,
-				'X-Checksum' => $md5
+				'Content-type' => [ 'application/json' ],
+				'X-Filename' => [ $filename ],
+				'X-Checksum' => [ $md5 ]
 			]
+		);
+	}
+	
+	public function retrieve($id, $expiration, $salt, $hash)
+	{
+		/**
+		 * This secret is managed by figure, the "key" is never revealed to any client. This
+		 * allows for an efficient mechanism of generating URLs that the caching servers can
+		 * interpret and cache.
+		 *
+		 * This secret should be shared across the PHP and Nginx caching servers to ensure that
+		 * the caching servers can parse the request and perform caching appropriately.
+		 *
+		 * It implies that clients need to fetch a signed url from figure. Unless they are provided
+		 * the secret to reduce the amount of round-trips required. Sharing the secret is generally
+		 * discouraged and should only be done if the servers truly exchange heaps of data.
+		 */
+		$secret = config('figure.publish.secret');
+		
+		$payload = implode('.', [
+			$id,
+			$expiration,
+			$salt,
+			$secret
+		]);
+		
+		$expected = sha1($payload);
+		echo $expected, PHP_EOL;
+		
+		assume($expiration > time(), 'Link is expired');
+		assume($hash === $expected, 'Invalid signature');
+		
+		
+		/**
+		 * @var UploadModel
+		 */
+		$upload = db()->fetch(UploadModel::class, $id);
+		
+		if (!$upload) {
+			throw new NotFoundException('No upload with the given id');
+		}
+		
+		$filename = $upload->getFile()->getFileName();
+		
+		return response(
+			storage()->readStream($filename),
+			200,
+			['Content-type' => $upload->getFile()->getContentType()]
 		);
 	}
 }

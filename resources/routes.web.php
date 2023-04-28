@@ -4,6 +4,8 @@ use app\controllers\HomeController;
 use app\controllers\ImageController;
 use app\controllers\UploadController;
 use app\controllers\VideoController;
+use spitfire\io\stream\Stream;
+use spitfire\core\Response;
 use spitfire\core\router\Router;
 
 /**
@@ -13,10 +15,9 @@ use spitfire\core\router\Router;
  */
 return function (Router $router) {
 	
-	$router->get('', [HomeController::class, 'index']);
+	$router->get('', fn() => new Response(Stream::fromHandle(fopen(spitfire()->locations()->resources('views/home.html'), 'r'))));
 	
 	$router->get('/create', [HomeController::class, 'create']);
-	$router->post('/upload.json', [UploadController::class, 'upload']);
 	
 	$router->get('/image/{id}/{expiration}/{transform}/{salt}:{hash}', [ImageController::class, 'retrieve']);
 	$router->get('/video/{id}/{expiration}/{transform}/{salt}:{hash}', [VideoController::class, 'retrieve']);
