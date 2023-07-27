@@ -1,12 +1,19 @@
 <?php
 
 use app\controllers\HomeController;
-use app\controllers\ImageController;
-use app\controllers\UploadController;
-use app\controllers\VideoController;
+use app\glide\Server;
+use app\models\ApiToken;
+use app\models\UploadModel;
+use League\Glide\Signatures\SignatureException;
+use League\Glide\Signatures\SignatureFactory;
+use League\Glide\Signatures\SignatureInterface;
+use Psr\Http\Message\ResponseInterface;
+use spitfire\core\Request;
 use spitfire\io\stream\Stream;
 use spitfire\core\Response;
+use spitfire\core\ResponseFactory;
 use spitfire\core\router\Router;
+use spitfire\exceptions\user\NotFoundException;
 
 /**
  * Feel free to add your routes inside this closure. This ensures that the
@@ -19,10 +26,76 @@ return function (Router $router) {
 	
 	$router->get('/create', [HomeController::class, 'create']);
 	
-	$router->get('/image/{id}/{expiration}/{transform}/{salt}:{hash}', [ImageController::class, 'retrieve']);
-	$router->get('/video/{id}/{expiration}/{transform}/{salt}:{hash}', [VideoController::class, 'retrieve']);
+	$router->get('/test', function (ResponseFactory $rf) {
+		return response($rf->json(['test' => true]));
+	});
 	
-	$router->get('/test', function () {
-		return response(view(null, ['test' => true]));
+	/**
+	 * @todo The model hydration for closures does not work
+	 */
+	$router->get('/image/{uploadid}/{expires}', function(string $uploadid, string $expires, Request $request, SignatureInterface $signature) : ResponseInterface {
+		
+		assume($expires === 'never' || $expires > time(), 'Upload is expired');
+		
+		/**
+		 * @var UploadModel
+		 */
+		$upload = db()->find(UploadModel::class, $uploadid);
+		
+		if ($upload === null) {
+			throw new NotFoundException('Upload not found');
+		}
+		
+		try {
+			$token = db()->from(ApiToken::class)->where('app_id', $upload->getAppId())->first(fn() => throw new SignatureException(''));
+			SignatureFactory::create($token->getToken())->validateRequest($request->getUri()->getPath(), $request->getQueryParams());
+		}
+		catch (SignatureException $e) {
+			$signature->validateRequest($request->getUri()->getPath(), $request->getQueryParams());
+		}
+		
+		$file   = $upload->getFile();
+		
+		[$drive, $_path] = storage()->pathInfo($file->getPoster());
+		
+		$glide = spitfire()->provider()->get(Server::class);
+		$glide->setSource($drive->fly());
+		
+		return $glide->getImageResponse($_path, $request->getQueryParams());
+	});
+	
+	$router->get('/video/{uploadid}/{expires}', function(string $uploadid, string $expires, Request $request, SignatureInterface $signature) : ResponseInterface {
+		
+		assume($expires === 'never' || $expires > time(), 'Upload is expired');
+		
+		/**
+		 * @var UploadModel
+		 */
+		$upload = db()->find(UploadModel::class, $uploadid);
+		
+		if ($upload === null) {
+			throw new NotFoundException('Upload not found');
+		}
+		
+		if (!$upload->getFile()->getAnimated()) {
+			throw new NotFoundException('Upload not animated');
+		}
+		
+		try {
+			$token = db()->from(ApiToken::class)->where('app_id', $upload->getAppId())->first(fn() => throw new SignatureException(''));
+			SignatureFactory::create($token->getToken())->validateRequest($request->getUri()->getPath(), $request->getQueryParams());
+		}
+		catch (SignatureException $e) {
+			$signature->validateRequest($request->getUri()->getPath(), $request->getQueryParams());
+		}
+		
+		$file   = $upload->getFile();
+		
+		[$drive, $_path] = storage()->pathInfo($file->getFileName());
+		
+		$glide = spitfire()->provider()->get('ffmpegserver');
+		$glide->setSource($drive->fly());
+		
+		return $glide->getImageResponse($_path, $request->getQueryParams());
 	});
 };

@@ -1,9 +1,8 @@
 <?php
 
 return [
-	'debug' => true,
-	
-	'url'   => env('app.url'),
+	'debug' => env('DEBUG', false),
+	'url'   => env('APP_URL'),
 	
 	'providers' => [
 		\spitfire\core\router\providers\RouterServiceProvider::class,
@@ -15,6 +14,9 @@ return [
 		\spitfire\storage\database\support\services\DatabaseServiceProvider::class,
 		\spitfire\storage\database\support\services\MigrationServiceProvider::class,
 		\spitfire\model\providers\ModelServiceProvider::class,
-		\spitfire\storage\support\providers\StorageServiceProvider::class
+		\spitfire\storage\support\providers\StorageServiceProvider::class,
+		\app\services\GlideServiceProvider::class,
+		\app\services\console\CommandServiceProvider::class,
+		\app\services\GraphQLServiceProvider::class,
 	]
 ];

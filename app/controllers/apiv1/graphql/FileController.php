@@ -10,7 +10,7 @@ class FileController
 	#[Query()]
 	public function getFile(int $id) : ?FileType
 	{
-		$fetched = db()->fetch(FileModel::class, $id);
+		$fetched = db()->find(FileModel::class, $id);
 		return $fetched? new FileType($fetched) : null;
 	}
 	

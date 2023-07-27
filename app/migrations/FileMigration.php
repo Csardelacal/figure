@@ -21,8 +21,15 @@ class FileMigration implements MigrationOperationInterface
 	{
 		$schema->add('apps', function (TableMigrationExecutorInterface $table) {
 			$table->id();
-			$table->string('secret', 255, false); # For symmetrical signatures
-			$table->string('publickey', 255, true); # For assymmetrical signatures
+			$table->string('name', 255, false);
+			$table->timestamps();
+			$table->softDelete();
+		});
+		
+		$schema->add('api_tokens', function (TableMigrationExecutorInterface $table) use ($schema) {
+			$table->id();
+			$table->foreign('app', $schema->table('apps'));
+			$table->string('secret', 255, false);
 			$table->timestamps();
 			$table->softDelete();
 		});
@@ -45,9 +52,21 @@ class FileMigration implements MigrationOperationInterface
 			$table->id();
 			$table->foreign('file', $schema->table('files'));
 			$table->foreign('app', $schema->table('apps'));
+			$table->string('blame', 512);
 			$table->string('secret', 255, false);
 			$table->timestamps();
 			$table->softDelete();
+		});
+		
+		$schema->add('file_caches', function (TableMigrationExecutorInterface $table) use ($schema) {
+			$table->id();
+			$table->string('cachefile', 255, false);
+			$table->string('filename', 255, false);
+			$table->string('hash', 255, false);
+			$table->int('used', true);
+			$table->int('size', true);
+			$table->timestamps();
+			$table->index('cache_files', ['cachefile']);
 		});
 	}
 	

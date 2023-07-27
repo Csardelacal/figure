@@ -14,7 +14,7 @@
  */
 
 use spitfire\contracts\core\kernel\ConsoleKernelInterface;
-use spitfire\core\kernel\ConsoleKernel;
+use app\kernel\ConsoleKernel;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
@@ -26,22 +26,10 @@ include __DIR__ . '/vendor/autoload.php';
 include __DIR__ . '/bin/bootstrap.php';
 
 /**
- * We need the arguments from argv. ArgV will contain the arguments as 
- * follows:
- * 
- *  - The first argument is the name of the executable (in this case our console file)
- *  - The second argument will be the name of the command to be executed
- *  - The remaining are arguments for our system to parse
- */
-$args = $argv;
-array_shift($args);
-$comm = array_shift($args);
-
-/**
  * @var ConsoleKernel
  */
 $kernel = spitfire()->provider()->get(ConsoleKernel::class);
 spitfire()->provider()->set(ConsoleKernelInterface::class, $kernel);
 spitfire()->provider()->set(ConsoleKernel::class, $kernel);
 
-exit( $kernel->handle(new ArgvInput(), new ConsoleOutput()) );
+exit( boot($kernel)->handle(new ArgvInput(), new ConsoleOutput()) );

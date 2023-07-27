@@ -24,7 +24,9 @@
 		"league/flysystem-aws-s3-v3": "^3.5",
 		"php-ffmpeg/php-ffmpeg": "^1.0",
 		"thecodingmachine/graphqlite": "^6.2",
-		"symfony/cache": "^6.2"
+		"symfony/cache": "^6.2",
+		"league/glide": "^2.2",
+		"nesbot/carbon": "^2.67"
 	},
 	"extra" : {
 		"spitfire" : {

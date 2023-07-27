@@ -1,5 +1,6 @@
 <?php namespace app\models;
 
+use spitfire\model\attribute\BelongsToOne as AttributeBelongsToOne;
 use spitfire\model\attribute\CharacterString;
 use spitfire\model\attribute\References;
 use spitfire\model\attribute\Table;
@@ -18,19 +19,16 @@ class UploadModel extends Model
 	#[CharacterString()]
 	private string $secret = '';
 	
-	#[References(AppModel::class)]
-	private ?AppModel $app = null;
+	#[References(App::class)]
+	#[AttributeBelongsToOne(App::class, '_id')]
+	private ?App $app;
 	
 	#[References(FileModel::class)]
+	#[AttributeBelongsToOne(FileModel::class, '_id')]
 	private ?FileModel $file;
 	
-	public function file()
-	{
-		return new BelongsToOne(
-			new Field($this, 'file'),
-			new Field(new FileModel($this->getConnection()), '_id')
-		);
-	}
+	#[CharacterString(512)]
+	private ?string $blame = null;
 	
 	public function setFile(FileModel $file)
 	{
@@ -39,7 +37,7 @@ class UploadModel extends Model
 	
 	public function getFile() :? FileModel
 	{
-		return $this->file?? $this->lazy('file')->getPayload()->first();
+		return $this->file?? $this->lazy('file');
 	}
 	
 	public function initSecret()
@@ -50,5 +48,64 @@ class UploadModel extends Model
 	public function getSecret()
 	{
 		return $this->secret;
+	}
+
+	/**
+	 * Get the value of blame
+	 *
+	 * @return string
+	 */
+	public function getBlame(): string
+	{
+		return $this->blame;
+	}
+
+	/**
+	 * Set the value of blame
+	 *
+	 * @param string $blame
+	 * @return self
+	 */
+	public function setBlame(string $blame): self
+	{
+		$this->blame = $blame;
+		return $this;
+	}
+	
+	public function app() : BelongsToOne
+	{
+		return new BelongsToOne(
+			new Field($this, 'app'),
+			new Field(new App($this->getConnection()), '_id')
+		);
+	}
+	
+	public function getAppId() : ?int
+	{
+		return $this->getActiveRecord()->get('app_id');
+	}
+	
+	/**
+	 * Get the value of app
+	 *
+	 * @return ?App
+	 */
+	public function getApp(): ?App
+	{
+		return $this->app?? $this->lazy('app');
+	}
+
+	/**
+	 * Set the value of app
+	 *
+	 * @param ?App $app
+	 *
+	 * @return self
+	 */
+	public function setApp(?App $app): self
+	{
+		$this->app = $app;
+
+		return $this;
 	}
 }

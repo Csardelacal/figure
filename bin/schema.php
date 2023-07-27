@@ -139,7 +139,7 @@
                                 return $object;
                             })();
                             $this->events = (static function() {
-                                $class = new \ReflectionClass(\spitfire\event\EventDispatch::class);
+                                $class = new \ReflectionClass(\spitfire\event\EventTarget::class);
                                 $object = $class->newInstanceWithoutConstructor();
 
                                 (function() {
@@ -186,7 +186,7 @@
                                             return $object;
                                         })()
                                     ];
-                                })->bindTo($object, \spitfire\event\EventDispatch::class)();
+                                })->bindTo($object, \spitfire\event\EventTarget::class)();
 
                                 return $object;
                             })();
@@ -223,28 +223,15 @@
 
                                             return $object;
                                         })(),
-                                        'secret' => (static function() {
+                                        'name' => (static function() {
                                             $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
                                             $object = $class->newInstanceWithoutConstructor();
 
                                             (function() {
-                                                $this->name = 'secret';
+                                                $this->name = 'name';
                                                 $this->type = 'string:255';
                                                 $this->autoIncrements = false;
                                                 $this->nullable = false;
-                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
-
-                                            return $object;
-                                        })(),
-                                        'publickey' => (static function() {
-                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
-                                            $object = $class->newInstanceWithoutConstructor();
-
-                                            (function() {
-                                                $this->name = 'publickey';
-                                                $this->type = 'string:255';
-                                                $this->autoIncrements = false;
-                                                $this->nullable = true;
                                             })->bindTo($object, \spitfire\storage\database\Field::class)();
 
                                             return $object;
@@ -345,7 +332,7 @@
                                 return $object;
                             })();
                             $this->events = (static function() {
-                                $class = new \ReflectionClass(\spitfire\event\EventDispatch::class);
+                                $class = new \ReflectionClass(\spitfire\event\EventTarget::class);
                                 $object = $class->newInstanceWithoutConstructor();
 
                                 (function() {
@@ -410,9 +397,311 @@
                                             })->bindTo($object, \spitfire\event\HookDispatcher::class)();
 
                                             return $object;
+                                        })(),
+                                        'spitfire\\storage\\database\\events\\QueryBeforeCreateEvent' => (static function() {
+                                            $object = new \spitfire\event\HookDispatcher;
+
+                                            (function() {
+                                                $this->listeners = [
+                                                    (static function() {
+                                                        $class = new \ReflectionClass(\spitfire\storage\database\events\SoftDeleteQueryListener::class);
+                                                        $object = $class->newInstanceWithoutConstructor();
+
+                                                        (function() {
+                                                            $this->field = 'removed';
+                                                        })->bindTo($object, \spitfire\storage\database\events\SoftDeleteQueryListener::class)();
+
+                                                        return $object;
+                                                    })()
+                                                ];
+                                            })->bindTo($object, \spitfire\event\HookDispatcher::class)();
+
+                                            return $object;
                                         })()
                                     ];
-                                })->bindTo($object, \spitfire\event\EventDispatch::class)();
+                                })->bindTo($object, \spitfire\event\EventTarget::class)();
+
+                                return $object;
+                            })();
+                        })->bindTo($object, \spitfire\storage\database\Layout::class)();
+
+                        return $object;
+                    })(),
+                    'api_tokens' => (static function() {
+                        $class = new \ReflectionClass(\spitfire\storage\database\Layout::class);
+                        $object = $class->newInstanceWithoutConstructor();
+
+                        (function() {
+                            $this->tablename = 'api_tokens';
+                            $this->fields = (static function() {
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
+                                $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\Field';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
+
+                                (function() {
+                                    $this->items = [
+                                        '_id' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = '_id';
+                                                $this->type = 'long:unsigned';
+                                                $this->autoIncrements = true;
+                                                $this->nullable = false;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'app_id' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'app_id';
+                                                $this->type = 'long:unsigned';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = true;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'secret' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'secret';
+                                                $this->type = 'string:255';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = false;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'created' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'created';
+                                                $this->type = 'int:unsigned';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = false;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'updated' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'updated';
+                                                $this->type = 'int:unsigned';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = true;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'removed' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'removed';
+                                                $this->type = 'int:unsigned';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = true;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })()
+                                    ];
+                                })->bindTo($object, \spitfire\collection\Collection::class)();
+
+                                return $object;
+                            })();
+                            $this->indexes = (static function() {
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
+                                $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\IndexInterface';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
+
+                                (function() {
+                                    $this->items = [
+                                        (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Index::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = '_PRIMARY';
+                                                $this->fields = (static function() {
+                                                    $class = new \ReflectionClass(\spitfire\collection\Collection::class);
+                                                    $object = $class->newInstanceWithoutConstructor();
+
+                                                    (function() {
+                                                        $this->items = [
+                                                            (static function() {
+                                                                $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                                                $object = $class->newInstanceWithoutConstructor();
+
+                                                                (function() {
+                                                                    $this->name = '_id';
+                                                                    $this->type = 'long:unsigned';
+                                                                    $this->autoIncrements = true;
+                                                                    $this->nullable = false;
+                                                                })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                                                return $object;
+                                                            })()
+                                                        ];
+                                                    })->bindTo($object, \spitfire\collection\Collection::class)();
+
+                                                    return $object;
+                                                })();
+                                                $this->unique = true;
+                                                $this->primary = true;
+                                            })->bindTo($object, \spitfire\storage\database\Index::class)();
+
+                                            return $object;
+                                        })(),
+                                        (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\ForeignKey::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'fk_api_tokens_app';
+                                                $this->field = (static function() {
+                                                    $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                                    $object = $class->newInstanceWithoutConstructor();
+
+                                                    (function() {
+                                                        $this->name = 'app_id';
+                                                        $this->type = 'long:unsigned';
+                                                        $this->autoIncrements = false;
+                                                        $this->nullable = true;
+                                                    })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                                    return $object;
+                                                })();
+                                                $this->referenced = (static function() {
+                                                    $class = new \ReflectionClass(\spitfire\storage\database\identifiers\FieldIdentifier::class);
+                                                    $object = $class->newInstanceWithoutConstructor();
+
+                                                    (function() {
+                                                        $this->raw = [
+                                                            'apps',
+                                                            '_id'
+                                                        ];
+                                                    })->bindTo($object, \spitfire\storage\database\identifiers\FieldIdentifier::class)();
+
+                                                    return $object;
+                                                })();
+                                            })->bindTo($object, \spitfire\storage\database\ForeignKey::class)();
+
+                                            return $object;
+                                        })()
+                                    ];
+                                })->bindTo($object, \spitfire\collection\Collection::class)();
+
+                                return $object;
+                            })();
+                            $this->events = (static function() {
+                                $class = new \ReflectionClass(\spitfire\event\EventTarget::class);
+                                $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->parent = null;
+                                    $this->hooks = [
+                                        'spitfire\\storage\\database\\events\\RecordBeforeInsertEvent' => (static function() {
+                                            $object = new \spitfire\event\HookDispatcher;
+
+                                            (function() {
+                                                $this->listeners = [
+                                                    (static function() {
+                                                        $class = new \ReflectionClass(\spitfire\storage\database\events\UpdateTimestampListener::class);
+                                                        $object = $class->newInstanceWithoutConstructor();
+
+                                                        (function() {
+                                                            $this->field = 'created';
+                                                        })->bindTo($object, \spitfire\storage\database\events\UpdateTimestampListener::class)();
+
+                                                        return $object;
+                                                    })()
+                                                ];
+                                            })->bindTo($object, \spitfire\event\HookDispatcher::class)();
+
+                                            return $object;
+                                        })(),
+                                        'spitfire\\storage\\database\\events\\RecordBeforeUpdateEvent' => (static function() {
+                                            $object = new \spitfire\event\HookDispatcher;
+
+                                            (function() {
+                                                $this->listeners = [
+                                                    (static function() {
+                                                        $class = new \ReflectionClass(\spitfire\storage\database\events\UpdateTimestampListener::class);
+                                                        $object = $class->newInstanceWithoutConstructor();
+
+                                                        (function() {
+                                                            $this->field = 'updated';
+                                                        })->bindTo($object, \spitfire\storage\database\events\UpdateTimestampListener::class)();
+
+                                                        return $object;
+                                                    })()
+                                                ];
+                                            })->bindTo($object, \spitfire\event\HookDispatcher::class)();
+
+                                            return $object;
+                                        })(),
+                                        'spitfire\\storage\\database\\events\\RecordBeforeDeleteEvent' => (static function() {
+                                            $object = new \spitfire\event\HookDispatcher;
+
+                                            (function() {
+                                                $this->listeners = [
+                                                    (static function() {
+                                                        $class = new \ReflectionClass(\spitfire\storage\database\events\SoftDeleteListener::class);
+                                                        $object = $class->newInstanceWithoutConstructor();
+
+                                                        (function() {
+                                                            $this->field = 'removed';
+                                                        })->bindTo($object, \spitfire\storage\database\events\SoftDeleteListener::class)();
+
+                                                        return $object;
+                                                    })()
+                                                ];
+                                            })->bindTo($object, \spitfire\event\HookDispatcher::class)();
+
+                                            return $object;
+                                        })(),
+                                        'spitfire\\storage\\database\\events\\QueryBeforeCreateEvent' => (static function() {
+                                            $object = new \spitfire\event\HookDispatcher;
+
+                                            (function() {
+                                                $this->listeners = [
+                                                    (static function() {
+                                                        $class = new \ReflectionClass(\spitfire\storage\database\events\SoftDeleteQueryListener::class);
+                                                        $object = $class->newInstanceWithoutConstructor();
+
+                                                        (function() {
+                                                            $this->field = 'removed';
+                                                        })->bindTo($object, \spitfire\storage\database\events\SoftDeleteQueryListener::class)();
+
+                                                        return $object;
+                                                    })()
+                                                ];
+                                            })->bindTo($object, \spitfire\event\HookDispatcher::class)();
+
+                                            return $object;
+                                        })()
+                                    ];
+                                })->bindTo($object, \spitfire\event\EventTarget::class)();
 
                                 return $object;
                             })();
@@ -672,7 +961,7 @@
                                 return $object;
                             })();
                             $this->events = (static function() {
-                                $class = new \ReflectionClass(\spitfire\event\EventDispatch::class);
+                                $class = new \ReflectionClass(\spitfire\event\EventTarget::class);
                                 $object = $class->newInstanceWithoutConstructor();
 
                                 (function() {
@@ -719,7 +1008,7 @@
                                             return $object;
                                         })()
                                     ];
-                                })->bindTo($object, \spitfire\event\EventDispatch::class)();
+                                })->bindTo($object, \spitfire\event\EventTarget::class)();
 
                                 return $object;
                             })();
@@ -756,12 +1045,12 @@
 
                                             return $object;
                                         })(),
-                                        'file' => (static function() {
+                                        'file_id' => (static function() {
                                             $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
                                             $object = $class->newInstanceWithoutConstructor();
 
                                             (function() {
-                                                $this->name = 'file';
+                                                $this->name = 'file_id';
                                                 $this->type = 'long:unsigned';
                                                 $this->autoIncrements = false;
                                                 $this->nullable = true;
@@ -769,13 +1058,26 @@
 
                                             return $object;
                                         })(),
-                                        'app' => (static function() {
+                                        'app_id' => (static function() {
                                             $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
                                             $object = $class->newInstanceWithoutConstructor();
 
                                             (function() {
-                                                $this->name = 'app';
+                                                $this->name = 'app_id';
                                                 $this->type = 'long:unsigned';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = true;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'blame' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'blame';
+                                                $this->type = 'string:512';
                                                 $this->autoIncrements = false;
                                                 $this->nullable = true;
                                             })->bindTo($object, \spitfire\storage\database\Field::class)();
@@ -890,13 +1192,13 @@
                                             $object = $class->newInstanceWithoutConstructor();
 
                                             (function() {
-                                                $this->name = 'fk_file';
+                                                $this->name = 'fk_uploads_file';
                                                 $this->field = (static function() {
                                                     $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
                                                     $object = $class->newInstanceWithoutConstructor();
 
                                                     (function() {
-                                                        $this->name = 'file';
+                                                        $this->name = 'file_id';
                                                         $this->type = 'long:unsigned';
                                                         $this->autoIncrements = false;
                                                         $this->nullable = true;
@@ -926,13 +1228,13 @@
                                             $object = $class->newInstanceWithoutConstructor();
 
                                             (function() {
-                                                $this->name = 'fk_app';
+                                                $this->name = 'fk_uploads_app';
                                                 $this->field = (static function() {
                                                     $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
                                                     $object = $class->newInstanceWithoutConstructor();
 
                                                     (function() {
-                                                        $this->name = 'app';
+                                                        $this->name = 'app_id';
                                                         $this->type = 'long:unsigned';
                                                         $this->autoIncrements = false;
                                                         $this->nullable = true;
@@ -963,7 +1265,7 @@
                                 return $object;
                             })();
                             $this->events = (static function() {
-                                $class = new \ReflectionClass(\spitfire\event\EventDispatch::class);
+                                $class = new \ReflectionClass(\spitfire\event\EventTarget::class);
                                 $object = $class->newInstanceWithoutConstructor();
 
                                 (function() {
@@ -1028,9 +1330,261 @@
                                             })->bindTo($object, \spitfire\event\HookDispatcher::class)();
 
                                             return $object;
+                                        })(),
+                                        'spitfire\\storage\\database\\events\\QueryBeforeCreateEvent' => (static function() {
+                                            $object = new \spitfire\event\HookDispatcher;
+
+                                            (function() {
+                                                $this->listeners = [
+                                                    (static function() {
+                                                        $class = new \ReflectionClass(\spitfire\storage\database\events\SoftDeleteQueryListener::class);
+                                                        $object = $class->newInstanceWithoutConstructor();
+
+                                                        (function() {
+                                                            $this->field = 'removed';
+                                                        })->bindTo($object, \spitfire\storage\database\events\SoftDeleteQueryListener::class)();
+
+                                                        return $object;
+                                                    })()
+                                                ];
+                                            })->bindTo($object, \spitfire\event\HookDispatcher::class)();
+
+                                            return $object;
                                         })()
                                     ];
-                                })->bindTo($object, \spitfire\event\EventDispatch::class)();
+                                })->bindTo($object, \spitfire\event\EventTarget::class)();
+
+                                return $object;
+                            })();
+                        })->bindTo($object, \spitfire\storage\database\Layout::class)();
+
+                        return $object;
+                    })(),
+                    'file_caches' => (static function() {
+                        $class = new \ReflectionClass(\spitfire\storage\database\Layout::class);
+                        $object = $class->newInstanceWithoutConstructor();
+
+                        (function() {
+                            $this->tablename = 'file_caches';
+                            $this->fields = (static function() {
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
+                                $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\Field';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
+
+                                (function() {
+                                    $this->items = [
+                                        '_id' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = '_id';
+                                                $this->type = 'long:unsigned';
+                                                $this->autoIncrements = true;
+                                                $this->nullable = false;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'cachefile' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'cachefile';
+                                                $this->type = 'string:255';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = false;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'filename' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'filename';
+                                                $this->type = 'string:255';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = false;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'hash' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'hash';
+                                                $this->type = 'string:255';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = false;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'used' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'used';
+                                                $this->type = 'int:unsigned';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = true;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'size' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'size';
+                                                $this->type = 'int:unsigned';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = true;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'created' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'created';
+                                                $this->type = 'int:unsigned';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = false;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })(),
+                                        'updated' => (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = 'updated';
+                                                $this->type = 'int:unsigned';
+                                                $this->autoIncrements = false;
+                                                $this->nullable = true;
+                                            })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                            return $object;
+                                        })()
+                                    ];
+                                })->bindTo($object, \spitfire\collection\Collection::class)();
+
+                                return $object;
+                            })();
+                            $this->indexes = (static function() {
+                                $class = new \ReflectionClass(\spitfire\collection\TypedCollection::class);
+                                $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->type = 'spitfire\\storage\\database\\IndexInterface';
+                                })->bindTo($object, \spitfire\collection\TypedCollection::class)();
+
+                                (function() {
+                                    $this->items = [
+                                        (static function() {
+                                            $class = new \ReflectionClass(\spitfire\storage\database\Index::class);
+                                            $object = $class->newInstanceWithoutConstructor();
+
+                                            (function() {
+                                                $this->name = '_PRIMARY';
+                                                $this->fields = (static function() {
+                                                    $class = new \ReflectionClass(\spitfire\collection\Collection::class);
+                                                    $object = $class->newInstanceWithoutConstructor();
+
+                                                    (function() {
+                                                        $this->items = [
+                                                            (static function() {
+                                                                $class = new \ReflectionClass(\spitfire\storage\database\Field::class);
+                                                                $object = $class->newInstanceWithoutConstructor();
+
+                                                                (function() {
+                                                                    $this->name = '_id';
+                                                                    $this->type = 'long:unsigned';
+                                                                    $this->autoIncrements = true;
+                                                                    $this->nullable = false;
+                                                                })->bindTo($object, \spitfire\storage\database\Field::class)();
+
+                                                                return $object;
+                                                            })()
+                                                        ];
+                                                    })->bindTo($object, \spitfire\collection\Collection::class)();
+
+                                                    return $object;
+                                                })();
+                                                $this->unique = true;
+                                                $this->primary = true;
+                                            })->bindTo($object, \spitfire\storage\database\Index::class)();
+
+                                            return $object;
+                                        })()
+                                    ];
+                                })->bindTo($object, \spitfire\collection\Collection::class)();
+
+                                return $object;
+                            })();
+                            $this->events = (static function() {
+                                $class = new \ReflectionClass(\spitfire\event\EventTarget::class);
+                                $object = $class->newInstanceWithoutConstructor();
+
+                                (function() {
+                                    $this->parent = null;
+                                    $this->hooks = [
+                                        'spitfire\\storage\\database\\events\\RecordBeforeInsertEvent' => (static function() {
+                                            $object = new \spitfire\event\HookDispatcher;
+
+                                            (function() {
+                                                $this->listeners = [
+                                                    (static function() {
+                                                        $class = new \ReflectionClass(\spitfire\storage\database\events\UpdateTimestampListener::class);
+                                                        $object = $class->newInstanceWithoutConstructor();
+
+                                                        (function() {
+                                                            $this->field = 'created';
+                                                        })->bindTo($object, \spitfire\storage\database\events\UpdateTimestampListener::class)();
+
+                                                        return $object;
+                                                    })()
+                                                ];
+                                            })->bindTo($object, \spitfire\event\HookDispatcher::class)();
+
+                                            return $object;
+                                        })(),
+                                        'spitfire\\storage\\database\\events\\RecordBeforeUpdateEvent' => (static function() {
+                                            $object = new \spitfire\event\HookDispatcher;
+
+                                            (function() {
+                                                $this->listeners = [
+                                                    (static function() {
+                                                        $class = new \ReflectionClass(\spitfire\storage\database\events\UpdateTimestampListener::class);
+                                                        $object = $class->newInstanceWithoutConstructor();
+
+                                                        (function() {
+                                                            $this->field = 'updated';
+                                                        })->bindTo($object, \spitfire\storage\database\events\UpdateTimestampListener::class)();
+
+                                                        return $object;
+                                                    })()
+                                                ];
+                                            })->bindTo($object, \spitfire\event\HookDispatcher::class)();
+
+                                            return $object;
+                                        })()
+                                    ];
+                                })->bindTo($object, \spitfire\event\EventTarget::class)();
 
                                 return $object;
                             })();

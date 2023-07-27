@@ -11,6 +11,7 @@
  * @copyright 2021 Magic3W - All rights reserved
  */
 
+use app\kernel\WebKernel;
 use spitfire\core\Request;
 
 /* 
@@ -24,5 +25,7 @@ include BASEDIR . '/vendor/autoload.php';
  * Spitfire will retrieve the request from the web server, select the appropriate
  * controller and invoke the middleware.
  */
-$kernel = spitfire()->provider()->get(\spitfire\core\kernel\WebKernel::class);
-emit(boot($kernel)->handle(Request::fromGlobals()));
+$kernel = spitfire()->provider()->get(WebKernel::class);
+spitfire()->provider()->set(Request::class, $request = Request::fromGlobals());
+
+emit(boot($kernel)->handle($request));

@@ -8,6 +8,7 @@ use spitfire\io\stream\StreamFactory;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Psr16Cache;
 use TheCodingMachine\GraphQLite\Http\Psr15GraphQLMiddlewareBuilder;
+use TheCodingMachine\GraphQLite\Http\WebonyxGraphqlMiddleware;
 use TheCodingMachine\GraphQLite\SchemaFactory;
 
 /**
@@ -26,18 +27,7 @@ use TheCodingMachine\GraphQLite\SchemaFactory;
 return function (Router $router) {
 	$v1 = $router->scope('/api/v1');
 	
-	$v1->middleware(
-		(new Psr15GraphQLMiddlewareBuilder(
-			(new SchemaFactory(new Psr16Cache(new ArrayAdapter()), spitfire()->provider()))
-			->addControllerNamespace('\\app\\controllers\\apiv1\\graphql')
-			->addTypeNamespace('\\app\\types\\apiv1\\graphql')
-			->createSchema()
-		))
-		->setUrl('/api/v1')
-		->setStreamFactory(new StreamFactory)
-		->setResponseFactory(new ResponseFactory)
-		->createMiddleware()
-	);
+	$v1->middleware(spitfire()->provider()->get(WebonyxGraphqlMiddleware::class));
 	
 	$v1->post('/upload.json', [UploadController::class, 'upload']);
 	$v1->get('/image/{id}/{expiration}/{salt}:{hash}', [UploadController::class, 'retrieve']);

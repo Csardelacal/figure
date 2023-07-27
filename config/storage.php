@@ -2,6 +2,7 @@
 
 return [
 	'writeto' => env('storage_provider')?: 's3',
+	'cacheto' => env('caching_provider')?: 'cache',
 	'engines' => [
 		'private' => [
 			'driver' => 'local',
@@ -10,6 +11,10 @@ return [
 		'public' => [
 			'driver' => 'local',
 			'root'   => dirname(__DIR__) . '/storage/public'
+		],
+		'cache' => [
+			'driver' => 'local',
+			'root'   => dirname(__DIR__) . '/storage/cache'
 		],
 		's3' => [
 			'driver' => 's3',

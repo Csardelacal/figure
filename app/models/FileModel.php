@@ -1,6 +1,8 @@
 <?php namespace app\models;
 
+use spitfire\core\Collection;
 use spitfire\model\attribute\CharacterString;
+use spitfire\model\attribute\HasMany;
 use spitfire\model\attribute\InIndex;
 use spitfire\model\attribute\Integer;
 use spitfire\model\attribute\Table;
@@ -41,6 +43,9 @@ class FileModel extends Model
 	#[Integer(true)]
 	#[InIndex('hashidx', 2)]
 	private string $length;
+	
+	#[HasMany(UploadModel::class, 'file_id')]
+	private Collection $uploads;
 	
 	public function getFileName()
 	{

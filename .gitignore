@@ -1,4 +1,5 @@
 
+.env
 /demos/msss/*.jpg
 /node_modules/
 /vendor/

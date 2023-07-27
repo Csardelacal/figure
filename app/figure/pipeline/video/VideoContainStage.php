@@ -44,8 +44,6 @@ class VideoContainStage implements VideoPipelineStage
 		$height = $height - $height % 2;
 		
 		$ratio = max($width / $ctx->getWidth(), $height / $ctx->getHeight());
-		$_width = ($width / $ratio) - ($width / $ratio) % 2;
-		$_height = ($height / $ratio) -  ($height / $ratio) % 2;
 		
 		$ctx
 			->getResource()
