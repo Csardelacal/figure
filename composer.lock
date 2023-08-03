@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.276.0",
+            "version": "3.277.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "ae3ea70a1e189501ef3d1e923b9eb8ae2525c365"
+                "reference": "c780e4fabaab2cce5fcd9748fd17cf82bb99207e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/ae3ea70a1e189501ef3d1e923b9eb8ae2525c365",
-                "reference": "ae3ea70a1e189501ef3d1e923b9eb8ae2525c365",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c780e4fabaab2cce5fcd9748fd17cf82bb99207e",
+                "reference": "c780e4fabaab2cce5fcd9748fd17cf82bb99207e",
                 "shasum": ""
             },
             "require": {
@@ -151,9 +151,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.276.0"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.277.0"
             },
-            "time": "2023-07-19T18:24:20+00:00"
+            "time": "2023-07-26T18:23:52+00:00"
         },
         {
             "name": "brick/varexporter",
@@ -909,7 +909,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v10.15.0",
+            "version": "v10.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -2122,16 +2122,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.22.1",
+            "version": "1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "65c39594fbd8c67abfc68bb323f86447bab79cc0"
+                "reference": "a2b24135c35852b348894320d47b3902a94bc494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/65c39594fbd8c67abfc68bb323f86447bab79cc0",
-                "reference": "65c39594fbd8c67abfc68bb323f86447bab79cc0",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/a2b24135c35852b348894320d47b3902a94bc494",
+                "reference": "a2b24135c35852b348894320d47b3902a94bc494",
                 "shasum": ""
             },
             "require": {
@@ -2163,9 +2163,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.22.1"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.23.0"
             },
-            "time": "2023-06-29T20:46:06+00:00"
+            "time": "2023-07-23T22:17:56+00:00"
         },
         {
             "name": "phug/phug",
@@ -3044,23 +3044,24 @@
         },
         {
             "name": "spitfire/dependency-provider",
-            "version": "0.2.10",
+            "version": "0.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Magic3W/provider.git",
-                "reference": "4e5eac97b38bbf134d80493fab31665d8ad27c4a"
+                "reference": "9472defa78d0ae08496425dc6565551bbefcd2f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Magic3W/provider/zipball/4e5eac97b38bbf134d80493fab31665d8ad27c4a",
-                "reference": "4e5eac97b38bbf134d80493fab31665d8ad27c4a",
+                "url": "https://api.github.com/repos/Magic3W/provider/zipball/9472defa78d0ae08496425dc6565551bbefcd2f0",
+                "reference": "9472defa78d0ae08496425dc6565551bbefcd2f0",
                 "shasum": ""
             },
             "require": {
-                "php": ">7",
+                "php": "^8",
                 "psr/container": "^2.0"
             },
             "require-dev": {
+                "infection/infection": "^0.27.0",
                 "phpstan/phpstan": "^1.4",
                 "phpunit/phpunit": "^9.5",
                 "squizlabs/php_codesniffer": "dev-dev/scope-indent-blank-lines"
@@ -3078,9 +3079,9 @@
             "description": "Service Container. Implements PSR 11",
             "support": {
                 "issues": "https://github.com/Magic3W/provider/issues",
-                "source": "https://github.com/Magic3W/provider/tree/0.2.10"
+                "source": "https://github.com/Magic3W/provider/tree/0.2.11"
             },
-            "time": "2023-05-08T09:02:02+00:00"
+            "time": "2023-07-27T17:56:21+00:00"
         },
         {
             "name": "spitfire/engine",
@@ -4883,16 +4884,16 @@
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "v15.5.1",
+            "version": "v15.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "b305633164a48947e22d53b6b15fcb98613c6592"
+                "reference": "736bbe858f8f2d30805d2c34d7d0241198d077ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/b305633164a48947e22d53b6b15fcb98613c6592",
-                "reference": "b305633164a48947e22d53b6b15fcb98613c6592",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/736bbe858f8f2d30805d2c34d7d0241198d077ac",
+                "reference": "736bbe858f8f2d30805d2c34d7d0241198d077ac",
                 "shasum": ""
             },
             "require": {
@@ -4909,14 +4910,14 @@
                 "nyholm/psr7": "^1.5",
                 "phpbench/phpbench": "^1.2",
                 "phpstan/extension-installer": "^1.1",
-                "phpstan/phpstan": "1.10.19",
+                "phpstan/phpstan": "1.10.26",
                 "phpstan/phpstan-phpunit": "1.3.13",
                 "phpstan/phpstan-strict-rules": "1.5.1",
                 "phpunit/phpunit": "^9.5 || ^10",
                 "psr/http-message": "^1 || ^2",
                 "react/http": "^1.6",
                 "react/promise": "^2.9",
-                "rector/rector": "^0.17.0",
+                "rector/rector": "^0.17",
                 "symfony/polyfill-php81": "^1.23",
                 "symfony/var-exporter": "^5 || ^6",
                 "thecodingmachine/safe": "^1.3 || ^2"
@@ -4944,7 +4945,7 @@
             ],
             "support": {
                 "issues": "https://github.com/webonyx/graphql-php/issues",
-                "source": "https://github.com/webonyx/graphql-php/tree/v15.5.1"
+                "source": "https://github.com/webonyx/graphql-php/tree/v15.5.3"
             },
             "funding": [
                 {
@@ -4952,7 +4953,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2023-06-16T12:19:23+00:00"
+            "time": "2023-07-24T13:25:25+00:00"
         }
     ],
     "packages-dev": [
@@ -5233,16 +5234,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.26",
+            "version": "9.2.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "443bc6912c9bd5b409254a40f4b0f4ced7c80ea1"
+                "reference": "b0a88255cb70d52653d80c890bd7f38740ea50d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/443bc6912c9bd5b409254a40f4b0f4ced7c80ea1",
-                "reference": "443bc6912c9bd5b409254a40f4b0f4ced7c80ea1",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/b0a88255cb70d52653d80c890bd7f38740ea50d1",
+                "reference": "b0a88255cb70d52653d80c890bd7f38740ea50d1",
                 "shasum": ""
             },
             "require": {
@@ -5298,7 +5299,8 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.26"
+                "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.27"
             },
             "funding": [
                 {
@@ -5306,7 +5308,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-06T12:58:08+00:00"
+            "time": "2023-07-26T13:44:30+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
