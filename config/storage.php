@@ -19,11 +19,11 @@ return [
 		's3' => [
 			'driver' => 's3',
 			'endpoint' => env('s3_endpoint')?: 'http://minio:9000',
-			'bucket' => 'figure',
+			'bucket' => env('s3_bucket')?: 'figure',
 			'key' => env('s3_key')?: 'figure',
 			'secret' => env('s3_secret')?: 'figuretest',
 			'use_path_style_endpoint' => true,
-			'region' => 'us-east-1'
+			'region' => env('s3_region')?: 'us-east-1'
 		]
 	]
 ];

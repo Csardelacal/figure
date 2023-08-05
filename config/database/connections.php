@@ -7,10 +7,10 @@ return [
 		'name'   => 'mysql',
 		'driver' => MysqlPDO::class,
 		'settings' => [
-			'server' => 'mysql',
-			'user' => 'www',
-			'password' => 'test',
-			'schema' => 'testdb'
+			'server' => env('mysql_host')?: 'mysql',
+			'user' => env('mysql_user')?: 'www',
+			'password' => env('mysql_pass')?: 'test',
+			'schema' => env('mysql_schema')?: 'testdb'
 		]
 	]
 ];
