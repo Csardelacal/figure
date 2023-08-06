@@ -61,7 +61,11 @@ return function (Router $router) {
 		$glide = spitfire()->provider()->get(Server::class);
 		$glide->setSource($drive->fly());
 		
-		return $glide->getImageResponse($_path, $request->getQueryParams());
+		/**
+		 * @var ResponseInterface
+		 */
+		$response = $glide->getImageResponse($_path, $request->getQueryParams());
+		return $response->withHeader('Expires', gmdate("r", $expires === "never"? strtotime("+3 YEAR") : $expires));
 	});
 	
 	$router->get('/video/{uploadid}/{expires}', function(string $uploadid, string $expires, Request $request, SignatureInterface $signature) : ResponseInterface {
@@ -96,6 +100,10 @@ return function (Router $router) {
 		$glide = spitfire()->provider()->get('ffmpegserver');
 		$glide->setSource($drive->fly());
 		
-		return $glide->getImageResponse($_path, $request->getQueryParams());
+		/**
+		 * @var ResponseInterface
+		 */
+		$response = $glide->getImageResponse($_path, $request->getQueryParams());
+		return $response->withHeader('expires', gmdate("r", $expires === "never"? strtotime("+3 YEAR") : $expires));
 	});
 };
