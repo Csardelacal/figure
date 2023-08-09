@@ -99,6 +99,11 @@ class ImagePipelineContext
 				$resource = imagecreatefromjpeg($filename);
 				[$width, $height] = getimagesize($filename);
 				break;
+			
+			case 'image/gif':
+				$resource = imagecreatefromgif($filename);
+				[$width, $height] = getimagesize($filename);
+				break;
 		}
 		
 		return new self($resource, $width, $height, 0);
