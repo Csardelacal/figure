@@ -6,6 +6,8 @@ use spitfire\exceptions\user\ApplicationException;
 class ImageScaleDownStage implements ImagePipelineStage
 {
 	
+	const MAX_PIXEL_SIZE = 9999;
+	
 	private ?int $width;
 	private ?int $height;
 	
@@ -21,13 +23,13 @@ class ImageScaleDownStage implements ImagePipelineStage
 	{
 		
 		if ($this->height !== null) {
-			$height = $this->height;
-			$width = $ctx->getWidth() * $this->height / $ctx->getHeight();
+			$height = (int)clamp(1, $this->height, self::MAX_PIXEL_SIZE);
+			$width = (int)clamp(1, $ctx->getWidth() * $this->height / $ctx->getHeight(), self::MAX_PIXEL_SIZE);
 		}
 		
 		elseif ($this->width !== null) {
-			$width = $this->width;
-			$height = $ctx->getHeight() * $this->width / $ctx->getWidth();
+			$width = (int)clamp(1, $this->width, self::MAX_PIXEL_SIZE);
+			$height = (int)clamp(1, $ctx->getHeight() * $this->width / $ctx->getWidth(), self::MAX_PIXEL_SIZE);
 		}
 		
 		else {
