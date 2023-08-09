@@ -58,6 +58,9 @@ return function (Router $router) {
 		
 		[$drive, $_path] = storage()->pathInfo($file->getPoster());
 		
+		/**
+		 * @var Server
+		 */
 		$glide = spitfire()->provider()->get(Server::class);
 		$glide->setSource($drive->fly());
 		

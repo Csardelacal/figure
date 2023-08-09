@@ -31,9 +31,6 @@ class FilePruneCommand extends Command
 		/**
 		 * @todo We need a mechanism to retrieve blocks of results at a time (like
 		 * a cursor) which lazily feeds the application with results.
-		 * 
-		 * @todo Spitfire has another bug here, where it does not return the query,
-		 * causing a bit of a mess.
 		 */
 		$query = db()->from(FileModel::class)->hasNo('uploads', function (QueryBuilderBuilder $builder) : QueryBuilder {
 			return $builder->withTrashed()->build();
@@ -46,7 +43,12 @@ class FilePruneCommand extends Command
 					$expired->delete();
 					return $files;
 				}
-				catch (Throwable) { return []; }
+				catch (Throwable) { 
+					/**
+					 * @todo Add logger
+					 */
+					return [];
+				}
 			})
 			->flatten()
 			->each(function (string $filename) {
