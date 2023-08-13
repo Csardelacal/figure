@@ -32,11 +32,11 @@ class UploadController extends Controller
 			'%s://%s_%s.%s',
 			config('storage.writeto'),
 			uniqid('', true),
-			substr($uploadPathInfo['filename'], 0, 64),
+			mb_substr($uploadPathInfo['filename'], 0, 64),
 			$uploadPathInfo['extension']
 		);
 		
-		if (strlen($filename) > 255) {
+		if (mb_strlen($filename) > 255) {
 			throw new ApplicationException('Filename invalid: ' . $filename);
 		}
 		
