@@ -6,10 +6,12 @@ use app\figure\pipeline\image\ImageScaleDownStage;
 
 class LQIP
 {
+	
 	public static function generate(string $filename)
 	{
 		$t = self::generateH16($filename);
-		return (strlen($t) > 1024)? self::generateW16($filename) : $t;
+		$t = (strlen($t) > 1024)? self::generateW16($filename) : $t;
+		return (strlen($t) > 1024)? file_get_contents(__DIR__ . '/_fallback.data') : $t;
 	}
 	
 	private static function generateH16(string $filename)
