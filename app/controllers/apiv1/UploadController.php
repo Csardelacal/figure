@@ -8,6 +8,7 @@ use FFMpeg\Coordinate\TimeCode;
 use League\Glide\Urls\UrlBuilder;
 use Psr\Http\Message\ServerRequestInterface;
 use spitfire\core\ResponseFactory;
+use spitfire\exceptions\user\ApplicationException;
 use spitfire\exceptions\user\NotFoundException;
 use spitfire\io\stream\Stream;
 use spitfire\mvc\Controller;
@@ -23,9 +24,21 @@ class UploadController extends Controller
 		 */
 		$file = spitfire()->provider()->get(ServerRequestInterface::class)->getUploadedFiles()['upload'];
 		
-		#Make a copy of the file to the hard drive
-		$filename = sprintf('%s://%s_%s', config('storage.writeto'), uniqid('', true), $file->getClientFilename());
+		# Extract the parts of the filename
+		$uploadPathInfo = pathinfo($file->getClientFilename());
 		
+		#Make a copy of the file to the hard drive
+		$filename = sprintf(
+			'%s://%s_%s.%s',
+			config('storage.writeto'),
+			uniqid('', true),
+			substr($uploadPathInfo['filename'], 0, 64),
+			$uploadPathInfo['extension']
+		);
+		
+		if (strlen($filename) > 255) {
+			throw new ApplicationException('Filename invalid: ' . $filename);
+		}
 		
 		/**
 		 * The MD5 of the file is relevant for us, since it allows us to quickly scan the database for
