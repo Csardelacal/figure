@@ -1,6 +1,7 @@
 <?php
 
 use app\controllers\HomeController;
+use app\glide\ffmpeg\Server as FfmpegServer;
 use app\glide\Server;
 use app\models\ApiToken;
 use app\models\UploadModel;
@@ -100,7 +101,7 @@ return function (Router $router) {
 		
 		[$drive, $_path] = storage()->pathInfo($file->getFileName());
 		
-		$glide = spitfire()->provider()->get('ffmpegserver');
+		$glide = spitfire()->provider()->get(FfmpegServer::class);
 		$glide->setSource($drive->fly());
 		
 		/**

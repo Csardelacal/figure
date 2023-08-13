@@ -1,6 +1,7 @@
 <?php namespace app\services;
 
 use app\glide\CacheController;
+use app\glide\ffmpeg\Server as FfmpegServer;
 use app\glide\ffmpeg\ServerFactory as FfmpegServerFactory;
 use app\glide\Server;
 use app\glide\ServerFactory;
@@ -86,7 +87,7 @@ class GlideServiceProvider implements ProviderInterface
 		);
 		
 		$provider->factory(
-			'ffmpegserver',
+			FfmpegServer::class,
 			fn() => FfmpegServerFactory::create([
 				'response' => new PsrResponseFactory(
 					new Response(Stream::fromString('')),

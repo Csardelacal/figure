@@ -7,6 +7,15 @@ use FFMpeg\FFMpeg;
 class ServerFactory extends GlideServerFactory
 {
 	
+	public function makeServer()
+	{
+		return new Server(
+			$this->getSource(),
+			$this->getCache(),
+			$this->getApi()
+        );
+	}
+	
 	public function getApi()
 	{
 		return new Api(

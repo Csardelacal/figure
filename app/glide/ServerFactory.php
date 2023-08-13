@@ -8,13 +8,18 @@ class ServerFactory extends GlideServerFactory
 	
 	public CacheController $cache;
 	
+	public function makeServer()
+	{
+		return new Server(
+			$this->getSource(),
+			$this->getCache(),
+			$this->getApi()
+        );
+	}
+	
 	public function getServer()
 	{
-        $server = new Server(
-            $this->getSource(),
-            $this->getCache(),
-            $this->getApi()
-        );
+        $server = $this->makeServer();
 
         $server->setSourcePathPrefix($this->getSourcePathPrefix() ?: '');
         $server->setCachePathPrefix($this->getCachePathPrefix() ?: '');
