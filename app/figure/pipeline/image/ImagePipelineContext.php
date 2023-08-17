@@ -99,6 +99,11 @@ class ImagePipelineContext
 				$resource = imagecreatefromjpeg($filename);
 				[$width, $height] = getimagesize($filename);
 				break;
+				
+			case 'image/webp':
+				$resource = imagecreatefromwebp($filename);
+				[$width, $height] = getimagesize($filename);
+				break;
 			
 			case 'image/gif':
 				$resource = imagecreatefromgif($filename);
