@@ -76,10 +76,10 @@ class Size extends BaseManipulator
         list($width, $height) = $this->limitImageSize($width, $height);
 
         if ((int) $width !== (int) $stream->getDimensions()->getWidth() || (int) $height !== (int) $stream->getDimensions()->getWidth()) {
-            $image = $this->runResize($video, $fit, (int) $width, (int) $height);
+            $video = $this->runResize($video, $fit, (int) $width, (int) $height);
         }
 
-        return $image;
+        return $video;
     }
 
     /**

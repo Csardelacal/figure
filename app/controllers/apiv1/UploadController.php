@@ -65,19 +65,6 @@ class UploadController extends Controller
 		 */
 		if (!$_file) {
 			
-			/**
-			 * Interesting note here. The stream is actually the one pointing to the uploaded file,
-			 * since we technically break that with writeStream
-			 *
-			 * @var Stream
-			 */
-			$stream = storage()->writeStream(
-				$filename,
-				$stream
-			);
-			
-			$stream->rewind();
-			
 			$animated = Animated::isAnimated($tmp);
 			
 			if ($animated) {
@@ -101,18 +88,36 @@ class UploadController extends Controller
 				$lqip = LQIP::generate($tmp);
 			}
 			
-			/**
-			 * @var FileModel
-			 */
-			$_file = db()->create(FileModel::class);
-			$_file->setFilename($filename);
-			$_file->setMD5($md5);
-			$_file->setLength($stream->getSize());
-			$_file->setContentType($mime);
-			$_file->setAnimated($animated);
-			$_file->setPoster($poster);
-			$_file->setLQIP($lqip);
-			$_file->store();
+			try {
+				/**
+				 * Interesting note here. The stream is actually the one pointing to the uploaded file,
+				 * since we technically break that with writeStream
+				 *
+				 * @var Stream
+				 */
+				$stream = storage()->writeStream(
+					$filename,
+					$stream
+				);
+				
+				$stream->rewind();
+				
+				/**
+				 * @var FileModel
+				 */
+				$_file = db()->create(FileModel::class);
+				$_file->setFilename($filename);
+				$_file->setMD5($md5);
+				$_file->setLength($stream->getSize());
+				$_file->setContentType($mime);
+				$_file->setAnimated($animated);
+				$_file->setPoster($poster);
+				$_file->setLQIP($lqip);
+				$_file->store();
+			}
+			catch (\Exception $e) {
+				storage()->delete($filename);
+			}
 		}
 		
 		/**
@@ -129,12 +134,17 @@ class UploadController extends Controller
 		$salt    = bin2hex(random_bytes(10));
 		
 		$builder = spitfire()->provider()->get(UrlBuilder::class);
+		$builder->setBaseUrl('/download/');
 		
 		return response(
 			(new ResponseFactory)->json([
 				'id' => $upload->getId(),
 				'secret' => $upload->getSecret(),
 				'url' => url()->to($builder->getUrl(
+					sprintf('%d/%s/%s', $upload->getId(), $expires, $salt), 
+					['w' => 700]
+				)),
+				'download' => url()->to($builder->getUrl(
 					sprintf('%d/%s/%s', $upload->getId(), $expires, $salt), 
 					['w' => 700]
 				)),

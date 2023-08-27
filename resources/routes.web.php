@@ -110,4 +110,34 @@ return function (Router $router) {
 		$response = $glide->getImageResponse($_path, $request->getQueryParams());
 		return $response->withHeader('expires', gmdate("r", $expires === "never"? strtotime("+3 YEAR") : $expires));
 	});
+	
+	$router->get('/download/{uploadid}/{expires}', function(string $uploadid, string $expires, Request $request, SignatureInterface $signature) : ResponseInterface {
+		
+		assume($expires === 'never' || $expires > time(), 'Upload is expired');
+		
+		/**
+		 * @var UploadModel
+		 */
+		$upload = db()->find(UploadModel::class, $uploadid);
+		
+		if ($upload === null) {
+			throw new NotFoundException('Upload not found');
+		}
+		
+		try {
+			$token = db()->from(ApiToken::class)->where('app_id', $upload->getAppId())->first(fn() => throw new SignatureException(''));
+			SignatureFactory::create($token->getToken())->validateRequest($request->getUri()->getPath(), $request->getQueryParams());
+		}
+		catch (SignatureException $e) {
+			$signature->validateRequest($request->getUri()->getPath(), $request->getQueryParams());
+		}
+		
+		$file   = $upload->getFile();
+		
+		$response = response(storage()->readStream($file->getFileName()));
+		return $response->withHeader('Content-type', $file->getContentType())
+			->withHeader('Content-Disposition', sprintf('attachment;filename="%s"', basename($file->getFileName())))
+			->withHeader('expires', gmdate("r", $expires === "never"? strtotime("+3 YEAR") : $expires));
+			
+	});
 };
